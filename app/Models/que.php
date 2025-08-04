@@ -17,4 +17,14 @@ class que extends Model
         'is_called',
         'dates',
     ];
+    public function layanan()
+    {
+        return $this->belongsTo(Layanan::class, 'layanan_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
 }
