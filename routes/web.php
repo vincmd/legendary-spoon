@@ -37,6 +37,7 @@ Route::get('/admin/layanan/new', function () {
 Route::Post('/admin/layanan/add', [admincontroller::class, 'layanan_new'])->name('layanan.create');
 Route::delete('/admin/layanan/delete/{id}', [admincontroller::class, 'layanan_destroy'])->name('layanan.destroy');
 
+// -------------account---------------------------
 Route::get('/admin/account', [admincontroller::class, 'account'])->middleware('auth', 'verified');
 Route::get('/admin/account', [admincontroller::class, 'search_acc'])->name('search_acc');
 Route::get('/admin/account/new', function () {

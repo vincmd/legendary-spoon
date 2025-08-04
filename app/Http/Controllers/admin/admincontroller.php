@@ -30,61 +30,7 @@ class admincontroller extends Controller
         return view('admin.admin', compact('users','layans','que_all','que_today','loket'));
     }
 
-    public function account()
-    {
-
-        $users = User::all();
-
-        return view('admin.account.account', compact('users'));
-    }
-
-    public function search_acc(Request $request)
-    {
-        if ($request) {
-            $users = User::where('name', 'like', '%' . $request->search . '%')
-                ->get();
-
-            if ($users->isEmpty()) {
-                $users = User::where('email', 'like', '%' . $request->search . '%')
-                    ->get();
-            }
-
-
-            return view('admin.account.account', compact('users'));
-        } else {
-            return redirect('/admin/account');
-        }
-    }
-    public function add_acc(Request $request)
-    {
-
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        User::create(
-            [
-                'name' => $request->input('name'),
-                'password' => Hash::make($request->input('password')),
-                'email' => $request->input('email'),
-
-            ]
-        );
-
-
-        return back();
-    }
-
-    public function removeacc($id)
-    {
-        $input = User::findOrFail($id);
-        $input->delete();
-
-        return back();
-    }
-
+ 
     public function layanan()
     {
 
