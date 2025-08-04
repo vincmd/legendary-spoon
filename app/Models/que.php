@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class que extends Model
+{
+    protected $table = 'queues';
+    protected $fillable = [
+        'phone_number',
+        'first_letter',
+        'plate_number',
+        'last_plate_letter',
+        'que_number',
+        'call_status',
+        'is_called',
+        'dates',
+    ];
+}

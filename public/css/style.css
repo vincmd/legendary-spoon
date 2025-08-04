@@ -1,0 +1,49 @@
+@keyframes minim {
+    0% {
+        transform: translateX(0);
+        opacity: 100%;
+    }
+
+    95% {
+        opacity: 100%;
+        transform: translateX(-900px);
+    }
+
+    90% {
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 0%;
+        transform: translateX(-100px);
+    }
+}
+
+@keyframes maxim {
+    0% {
+        transform: translateX(-60px);
+        opacity: 0;
+    }
+
+    3% {
+        transform: translateX(-60px);
+        opacity: 100%;
+    }
+
+    100% {
+        transform: translateX(0px);
+    }
+
+}
+
+.minim {
+    animation: minim 1s ease-in-out;
+    transform: translateX(-100px);
+    z-index: 0;
+}
+
+.maxim {
+    animation: maxim 1s ease-in-out;
+    z-index: 0;
+
+}
