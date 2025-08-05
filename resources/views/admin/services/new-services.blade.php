@@ -101,7 +101,7 @@
                     <h3 class="text-center font-medium font-mono text-xl  text-[#CDCCCC]  "> -</h3>
                     <a href="/admin" class="text-center font-medium font-mono text-xl ">home</a>
                     <a href="/admin/account" class="text-center font-medium font-mono text-xl ">account</a>
-                    <a href="/admin/layanan" class="text-center font-medium font-mono text-xl ">layanan</a>
+                    <a href="/admin/services" class="text-center font-medium font-mono text-xl ">services</a>
                     <a href="/admin/locket" class="text-center font-medium font-mono text-xl ">lockets</a>
                     <a href="/admin/running_text" class="text-center font-medium font-mono text-xl ">running text</a>
                 </div>
@@ -112,16 +112,16 @@
 
             <div class=" h-20 flex flex-row justify-around items-center w-full">
                 <h1></h1>
-                <h1 class="font-bold text-2xl font-sans">Tambah Layanan</h1>
+                <h1 class="font-bold text-2xl font-sans">Tambah Services</h1>
                 <button class="bg-[#CF822A] rounded-md w-36 h-8"
-                    onclick="window.location.href='/admin/layanan';">back</button>
+                    onclick="window.location.href='/admin/services';">back</button>
             </div>
             <div class="bg-white w-48/54 h-15/20 flex flex-col gap-10 items-center  pb-30  ">
                 <h1 class="h-24 w-9/10 flex justify-center items-center font-bold text-lg font-serif mr-32">
-                    Tambah Layanan baru
+                    Tambah Services baru
                 </h1>
 
-                <form enctype="multipart/form-data" action="{{ Route('layanan.create') }}" method="POST"    class="w-2/3 flex flex-col items-start gap-8 h-full ">
+                <form enctype="multipart/form-data" action="{{ Route('services.create') }}" method="POST"    class="w-2/3 flex flex-col items-start gap-8 h-full ">
                     @csrf
 
                     <div class="w-9/10 flex flex-col">

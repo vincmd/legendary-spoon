@@ -1,64 +1,60 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Models\services;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class Servicescontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function services()
     {
-        //
+
+        $layan = services::all();
+        return view('admin.services.services', compact('layan'));
+    }
+    public function search_services(Request $request)
+    {
+        if ($request) {
+            $layan = services::where('services_name', 'like', '%' . $request->search_services . '%')
+                ->get();
+
+            if ($layan->isEmpty()) {
+                $layan = services::where('code', 'like', '%' . $request->search_services . '%')
+                    ->get();
+            }
+
+
+            return view('admin.services.services', compact('layan'));
+        } else {
+            return redirect('/admin/services');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function services_new(Request $request)
     {
-        //
+        $request->validate([
+            'services_name' => 'required',
+            'code' => 'required',
+        ]);
+        $logo_path = '-';
+        if ($request->file('logo')) {
+            $logo_path = 0;
+            $logo_path = $request->file('logo')->store('logo');
+        }
+        services::create([
+            'services_name' => $request->input('services_name'),
+            'code' => $request->input('code'),
+            'logo_path' => $logo_path,
+        ]);
+        return back();
     }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function services_destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        $input = services::findOrFail($id);
+        $input->delete();
+        return back();
     }
 }
