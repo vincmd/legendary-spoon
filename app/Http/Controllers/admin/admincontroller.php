@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
+use App\Http\Controllers\Controller;
 
 use App\Models\layanan;
 use App\Models\lockets;
@@ -30,7 +31,7 @@ class admincontroller extends Controller
         return view('admin.admin', compact('users','layans','que_all','que_today','loket'));
     }
 
- 
+
     public function layanan()
     {
 
