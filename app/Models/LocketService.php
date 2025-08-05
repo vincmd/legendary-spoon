@@ -11,6 +11,6 @@ class LocketService extends Model
 
     protected $fillable = [
         'locket_id',
-        'layanan_id',
+        'services_id',
     ];
 }

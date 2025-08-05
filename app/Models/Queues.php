@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class que extends Model
+class Queues extends Model
 {
     protected $table = 'queues';
     protected $fillable = [
@@ -19,7 +19,7 @@ class que extends Model
     ];
     public function layanan()
     {
-        return $this->belongsTo(Layanan::class, 'layanan_id');
+        return $this->belongsTo(Services::class, 'services_id');
     }
 
     public function user()
