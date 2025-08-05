@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\admincontroller;
+use App\Http\Controllers\admin\admincontroller;
 use App\Http\Controllers\kioskcontrollrt;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\loketcontroller;
