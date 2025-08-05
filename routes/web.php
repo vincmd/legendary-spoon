@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\Accountcontroller;
 use App\Http\Controllers\admin\admincontroller;
 use App\Http\Controllers\kioskcontrollrt;
 use App\Http\Controllers\LoginController;
@@ -38,13 +39,13 @@ Route::Post('/admin/layanan/add', [admincontroller::class, 'layanan_new'])->name
 Route::delete('/admin/layanan/delete/{id}', [admincontroller::class, 'layanan_destroy'])->name('layanan.destroy');
 
 // -------------account---------------------------
-Route::get('/admin/account', [admincontroller::class, 'account'])->middleware('auth', 'verified');
-Route::get('/admin/account', [admincontroller::class, 'search_acc'])->name('search_acc');
+Route::get('/admin/account', [Accountcontroller::class, 'account'])->middleware('auth', 'verified');
+Route::get('/admin/account', [Accountcontroller::class, 'search_acc'])->name('search_acc');
 Route::get('/admin/account/new', function () {
     return view('admin.account.account-new');
 })->middleware('auth', 'verified');
-Route::post('/admin/account/new/add', [admincontroller::class, 'add_acc'])->name("add.account");
-Route::delete('/admin/account/del/{id}', [AdminController::class, 'removeacc'])->name('acc.destroy');
+Route::post('/admin/account/new/add', [Accountcontroller::class, 'add_acc'])->name("add.account");
+Route::delete('/admin/account/del/{id}', [Accountcontroller::class, 'removeacc'])->name('acc.destroy');
 
 Route::get('/admin/locket', [admincontroller::class, 'lockets']);
 Route::get('/admin/locket', [admincontroller::class, 'search_locket'])->name('search_locket');
@@ -79,4 +80,4 @@ Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush
 /// logout
 Route::get("/logout", [admincontroller::class, 'logout']);
 
-Route::get('/tes',function(){return view('template.test');});
+Route::get('/tes',function(){return view('template.main');});
