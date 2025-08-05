@@ -5,13 +5,13 @@
             Dashboard
         </h2>
 
-        {{-- @include('template.cta') --}}
+        @include('template.parts.cta')
 
-        {{-- @include('template.card') --}}
+        @include('template.parts.card')
 
-        {{-- @include('template.table.table') --}}
+        @include('template.parts.table.table')
 
-        {{-- @include('template.chart-parrent') --}}
+        @include('template.parts.chart.chart-parrent')
     </div>
 </main>
 
