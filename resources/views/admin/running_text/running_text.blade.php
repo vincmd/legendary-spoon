@@ -100,7 +100,7 @@
                     <h3 class="text-center font-medium font-mono text-xl  text-[#CDCCCC]  "> -</h3>
                     <a href="/admin" class="text-center font-medium font-mono text-xl ">home</a>
                     <a href="/admin/account" class="text-center font-medium font-mono text-xl ">account</a>
-                    <a href="/admin/layanan" class="text-center font-medium font-mono text-xl ">layanan</a>
+                    <a href="/admin/services" class="text-center font-medium font-mono text-xl ">services</a>
                     <a href="/admin/locket" class="text-center font-medium font-mono text-xl ">lockets</a>
                     <a href="" class="text-center font-medium font-mono text-xl ">running text</a>
                 </div>

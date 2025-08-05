@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
 
-use App\Models\layanan;
+use App\Models\services;
 use App\Models\lockets;
 use App\Models\que;
 use App\Models\RunningText;
@@ -23,63 +24,12 @@ class admincontroller extends Controller
     public function index()
     {
         $users = User::all();
-        $layans=layanan::count();
-        $que_all=que::count();
-        $que_today=que::whereDate('dates',Carbon::today())->count();
-        $loket=lockets::count();
+        $layans = services::count();
+        $que_all = que::count();
+        $que_today = que::whereDate('dates', Carbon::today())->count();
+        $loket = lockets::count();
 
-        return view('admin.admin', compact('users','layans','que_all','que_today','loket'));
-    }
-
-
-    public function layanan()
-    {
-
-        $layan = layanan::all();
-        return view('admin.layanan.layanan', compact('layan'));
-    }
-    public function search_layanan(Request $request)
-    {
-        if ($request) {
-            $layan = layanan::where('services_name', 'like', '%' . $request->search_layanan . '%')
-                ->get();
-
-            if ($layan->isEmpty()) {
-                $layan = layanan::where('code', 'like', '%' . $request->search_layanan . '%')
-                    ->get();
-            }
-
-
-            return view('admin.layanan.layanan', compact('layan'));
-        } else {
-            return redirect('/admin/layanan');
-        }
-    }
-
-
-    public function layanan_new(Request $request)
-    {
-        $request->validate([
-            'services_name' => 'required',
-            'code' => 'required',
-        ]);
-        $logo_path = '-';
-        if ($request->file('logo')) {
-            $logo_path = 0;
-            $logo_path = $request->file('logo')->store('logo');
-        }
-        layanan::create([
-            'services_name' => $request->input('services_name'),
-            'code' => $request->input('code'),
-            'logo_path' => $logo_path,
-        ]);
-        return back();
-    }
-    public function layanan_destroy($id)
-    {
-        $input = layanan::findOrFail($id);
-        $input->delete();
-        return back();
+        return view('admin.admin', compact('users', 'layans', 'que_all', 'que_today', 'loket'));
     }
 
     public function lockets()
@@ -162,13 +112,13 @@ class admincontroller extends Controller
     public function running_text()
     {
         $running_text = RunningText::all()->first();
-        if(!$running_text){
-            $running_text=' ';
-            session()->put('test',false);
+        if (!$running_text) {
+            $running_text = ' ';
+            session()->put('test', false);
+        } else {
+            session()->put('test', true);
         }
-        else{session()->put('test',true);}
         return view('admin.running_text.running_text', compact('running_text'));
-
     }
     public function update_text(Request $request)
     {
@@ -191,27 +141,28 @@ class admincontroller extends Controller
         }
 
         return back();
-
     }
 
-    public function videos(){
+    public function videos()
+    {
         return view('admin.video.video');
     }
 
-    public function video_new( Request $request){
+    public function video_new(Request $request)
+    {
         $path = $request->file('video')->store('sementara');
-        session()->put('path_video',$path);
+        session()->put('path_video', $path);
         return back();
     }
 
-    public function fix_up_video(Request $request){
+    public function fix_up_video(Request $request)
+    {
         video::create([
-            'title'=>$request->title,
-            'file_path'=>session('path_video'),
-            'status'=>0,
+            'title' => $request->title,
+            'file_path' => session('path_video'),
+            'status' => 0,
         ]);
         session()->remove('path_video');
         return back();
     }
-
 }

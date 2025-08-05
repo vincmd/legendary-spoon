@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Accountcontroller extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -85,7 +86,7 @@ class Accountcontroller extends Controller
         return back();
     }
 
-    public function search(Request $request)
+    public function search_acc(Request $request)
     {
         if ($request) {
             $users = User::where('name', 'like', '%' . $request->search . '%')

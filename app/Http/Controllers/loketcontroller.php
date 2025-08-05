@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\layanan;
+use App\Models\services;
 use App\Models\lockets;
 use App\Models\LocketService;
 use App\Models\que;
@@ -15,7 +15,7 @@ class loketcontroller extends Controller
 
     public function index()
     {
-        $servicess = layanan::all();
+        $servicess = services::all();
         $locket = lockets::where('email_user', session('email'))->first();
         if ($locket) {
             $serve = LocketService::where('locket_id', $locket->id)->first();
@@ -31,7 +31,7 @@ class loketcontroller extends Controller
         $request->validate([
             'opsi' => 'required',
         ]);
-        $service = layanan::find($request->opsi);
+        $service = services::find($request->opsi);
         $locket_id = lockets::where('email_user', session('email'))->first();
         if ($service && $locket_id) {
 
