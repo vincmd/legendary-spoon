@@ -25,7 +25,7 @@ class loketcontroller extends Controller
         }
         return view('lockets.index', compact('servicess'));
     }
-
+    
     public function select(Request $request)
     {
         $request->validate([

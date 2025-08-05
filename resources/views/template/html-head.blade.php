@@ -25,5 +25,3 @@
     <script src="{{ asset('aset/js/charts-lines.js') }}" defer></script>
     <script src="{{ asset('aset/js/charts-pie.js') }}" defer></script>
   </head>
-
-  @include('template.bodytag');
