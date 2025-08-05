@@ -44,7 +44,7 @@ Route::get('/admin/account/new', function () {
     return view('admin.account.account-new');
 })->middleware('auth', 'verified');
 Route::post('/admin/account/new/add', [admincontroller::class, 'add_acc'])->name("add.account");
-Route::delete('/admin/account/del/{id}', [AdminController::class, 'removeacc'])->name('acc.destroy');
+Route::delete('/admin/account/del/{id}', [adminController::class, 'removeacc'])->name('acc.destroy');
 
 Route::get('/admin/locket', [admincontroller::class, 'lockets']);
 Route::get('/admin/locket', [admincontroller::class, 'search_locket'])->name('search_locket');
@@ -52,11 +52,11 @@ Route::get('/admin/locket/new', [admincontroller::class, 'locket_add_data']);
 Route::post('/admin/locket/news', [admincontroller::class, 'locket_new'])->name('locket.create');
 Route::delete('/admin/locket/del/{id}', [admincontroller::class, 'locket_destroy'])->name('locket.destroy');
 
-Route::get('/admin/running_text',[admincontroller::class,'running_text']);
-Route::post('/admin/running_text/update',[admincontroller::class,'update_text'])->name('update_text');
+Route::get('/admin/running_text', [admincontroller::class, 'running_text']);
+Route::post('/admin/running_text/update', [admincontroller::class, 'update_text'])->name('update_text');
 
-Route::get('/admin/video',[admincontroller::class,'videos']);
-Route::post('/admin/video/up',[admincontroller::class,'videos_new'])->name('video.new');
+Route::get('/admin/video', [admincontroller::class, 'videos']);
+Route::post('/admin/video/up', [admincontroller::class, 'videos_new'])->name('video.new');
 // ========================================================
 
 

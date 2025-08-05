@@ -30,7 +30,7 @@ class admincontroller extends Controller
         return view('admin.admin', compact('users','layans','que_all','que_today','loket'));
     }
 
- 
+
     public function layanan()
     {
 
