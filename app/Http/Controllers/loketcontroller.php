@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\services;
 use App\Models\lockets;
 use App\Models\LocketService;
-use App\Models\que;
+use App\Models\queues;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
@@ -25,7 +25,7 @@ class loketcontroller extends Controller
         }
         return view('lockets.index', compact('servicess'));
     }
-    
+
     public function select(Request $request)
     {
         $request->validate([
@@ -47,7 +47,7 @@ class loketcontroller extends Controller
     {
         $locket = lockets::where('email_user', session('email'))->first();
         $serve = LocketService::where('locket_id', $locket->id)->first();
-        $queues = que::where('layanan_id', $serve->layanan_id)->whereToday('dates', 'true');
+        $queues = queues::where('layanan_id', $serve->layanan_id)->whereToday('dates', 'true');
 
 
         return view('lockets.loket', compact('queues'));

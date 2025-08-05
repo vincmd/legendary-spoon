@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\que;
+use App\Models\queues;
 use App\Models\services;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,7 +32,7 @@ class kioskcontrollrt extends Controller
             ]);
 
             $ya = 1;
-            que::create(
+            queues::create(
                 [
                     'phone_number' => $request->input("phone_number"),
                     'first_letter' => "kt",

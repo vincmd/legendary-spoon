@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\services;
 use App\Models\lockets;
 use App\Models\que;
+use App\Models\Queues;
 use App\Models\RunningText;
 use App\Models\User;
 use App\Models\video;
@@ -25,8 +26,8 @@ class admincontroller extends Controller
     {
         $users = User::all();
         $layans = services::count();
-        $que_all = que::count();
-        $que_today = que::whereDate('dates', Carbon::today())->count();
+        $que_all = Queues::count();
+        $que_today = Queues::whereDate('dates', Carbon::today())->count();
         $loket = lockets::count();
 
         return view('admin.admin', compact('users', 'layans', 'que_all', 'que_today', 'loket'));
