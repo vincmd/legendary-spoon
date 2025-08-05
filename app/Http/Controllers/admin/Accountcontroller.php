@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Accountcontroller extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -103,9 +103,3 @@ class Accountcontroller extends Controller
         }
     }
 }
-
-
-
-
-
-

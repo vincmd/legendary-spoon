@@ -100,7 +100,7 @@
                     <h3 class="text-center font-medium font-mono text-xl  text-[#CDCCCC]  "> -</h3>
                     <a href="/admin" class="text-center font-medium font-mono text-xl ">home</a>
                     <a href="/admin/account" class="text-center font-medium font-mono text-xl ">account</a>
-                    <a href="/admin/layanan" class="text-center font-medium font-mono text-xl ">layanan</a>
+                    <a href="/admin/services" class="text-center font-medium font-mono text-xl ">services</a>
                     <a href="/admin/locket" class="text-center font-medium font-mono text-xl ">lockets</a>
                     <a href="/admin/running_text" class="text-center font-medium font-mono text-xl ">running text</a>
                 </div>
@@ -117,10 +117,10 @@
                     <div class="flex flex-col w-30 items-center h-full justify-between ">
                         <h1 class="text-xl font-sans font-semibold">Services Data</h1>
                         <button class="bg-green-400 w-full h-8 rounded-lg"
-                            onclick="window.location.href='/admin/layanan/new';">add service</button>
+                            onclick="window.location.href='/admin/services/new';">add service</button>
                     </div>
                     <div class="relative">
-                        <form action="{{ route('search_layanan') }}" method="get" >
+                        <form action="{{ route('search_services') }}" method="get" >
                         @csrf
                             <input type="text" name="search_layanan" id=""
                                 class="bg-slate-200 w-48 h-8 border border-black rounded-lg pl-2  " placeholder="search"
@@ -159,7 +159,7 @@
                                 <td class="border border-black font-mono font-semibold pl-1"><img src=""
                                         alt="logo"></td>
                                 <td class="border border-black font-mono font-semibold pl-1">
-                                    <form method="POST" action="{{ route('layanan.destroy', $layanan->id) }}"
+                                    <form method="POST" action="{{ route('services.destroy', $layanan->id) }}"
                                         onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')
