@@ -43,10 +43,6 @@ class AccountController extends Controller
         return back();
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -68,39 +64,18 @@ class AccountController extends Controller
         return back();
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function remove_acc($id)
     {
         $input = User::findOrFail($id);
         $input->delete();
 
         return back();
+    }
+
+    public function services()
+    {
+        $users = User::all();
+        return view('admin.services.services', compact('users'));
     }
 
     public function search_acc(Request $request)
