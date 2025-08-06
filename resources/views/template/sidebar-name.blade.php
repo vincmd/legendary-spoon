@@ -34,31 +34,31 @@
         [
             'status' => false,
             'name' => 'home',
-            'href' => '',
+            'href' => '/admin',
             'icon' => $logo['home'],
         ],
         [
             'status' => false,
             'name' => 'acces',
-            'href' => '',
+            'href' => '/admin/account',
             'icon' => $logo['user'],
         ],
         [
             'status' => false,
             'name' => 'services',
-            'href' => '',
+            'href' => '/admin/services',
             'icon' => $logo['click'],
         ],
         [
             'status' => false,
             'name' => 'locket',
-            'href' => '',
+            'href' => '/admin/locket',
             'icon' => $logo['computer'],
         ],
         [
             'status' => false,
             'name' => 'running text',
-            'href' => '',
+            'href' => '/admin/running_text',
             'icon' => $logo['tables'],
         ],
     ];

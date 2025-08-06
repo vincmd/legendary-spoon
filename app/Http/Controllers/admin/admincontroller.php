@@ -16,11 +16,11 @@ class Admincontroller extends Controller
     public function index()
     {
         $users = User::all();
-        $servi = services::count();
+        $serve = services::count();
         $que_all = Queues::count();
         $que_today = Queues::whereDate('dates', Carbon::today())->count();
         $loket = lockets::count();
 
-        return view('admin.admin', compact('users', 'servi', 'que_all', 'que_today', 'loket'));
+        return view('admin.index.admin', compact('users', 'serve', 'que_all', 'que_today', 'loket'));
     }
 }

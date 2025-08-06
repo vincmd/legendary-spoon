@@ -56,7 +56,7 @@
                 ],
                 [
                     'name' => 'layanan',
-                    'data' => $layans,
+                    'data' => $serve,
                     'icon' =>$logo['click'],
                     'icon_color' => '`text-blue-500`, `dark:bg-blue-500`',
                 ],

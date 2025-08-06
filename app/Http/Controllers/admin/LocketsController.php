@@ -28,7 +28,7 @@ class LocketsController extends Controller
             }
 
 
-            return view('admin.loket.loket', compact('lockets'));
+            return view('admin.loket.main-admin-locket.loket', compact('lockets'));
         } else {
             return redirect('/admin/locket');
         }
@@ -54,7 +54,7 @@ class LocketsController extends Controller
                 }
             }
         }
-        return view('admin.loket.loket-new', compact('sorted'));
+        return view('admin.loket.new-locket.loket-new', compact('sorted'));
     }
 
 
@@ -78,5 +78,5 @@ class LocketsController extends Controller
         $input->delete();
         return back();
     }
-  
+
 }
