@@ -63,7 +63,7 @@
         ],
     ];
 
-    session()->put('open_tab', 'services');
+    // session()->put('open_tab', 'services');
     foreach ($sidebar_buttons as &$sesion_check) {
         if ($sesion_check['name'] == session('open_tab')) {
             $sesion_check['status'] = true;

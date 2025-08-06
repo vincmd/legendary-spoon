@@ -10,7 +10,7 @@ use App\Models\Queues;
 use App\Models\User;
 use Carbon\Carbon;
 
-class admincontroller extends Controller
+class Admincontroller extends Controller
 {
 
     public function index()
