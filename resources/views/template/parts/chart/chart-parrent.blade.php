@@ -4,7 +4,7 @@
         Charts
     </h2>
     <div class="grid gap-6 mb-8 md:grid-cols-2">
-        @include('template.pie-chart')
+        @include('template.parts.chart.pie-chart')
 
-        @include('template.trafic-chart')
+        @include('template.parts.chart.trafic-chart')
     </div>

@@ -15,7 +15,8 @@
 
 
 
-@include('template.table.row.approve-row')
+@include('template.parts.table.row.approve-row')
+@include('template.parts.table.row.denied-row')
 
 
 
@@ -29,6 +30,6 @@
             Showing 21-30 of 100
         </span>
         <span class="col-span-2"></span>
-        @include('template.table.pagin-table')
+        @include('template.parts.table.pagin-table')
     </div>
 </div>
