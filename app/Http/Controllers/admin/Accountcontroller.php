@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class AccountController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function account()
     {
         $users = User::all();
 
@@ -21,10 +22,27 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function add_acc(Request $request)
     {
-        //
+
+        $request->validate([
+            'name' => 'required|min:3',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+        User::create(
+            [
+                'name' => $request->input('name'),
+                'email' => ($request->input('email')),
+                'password' => Hash::make($request->input('password')),
+
+            ]
+        );
+
+
+        return back();
     }
+
 
     /**
      * Store a newly created resource in storage.
