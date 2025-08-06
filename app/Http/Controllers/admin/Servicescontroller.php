@@ -11,22 +11,22 @@ class Servicescontroller extends Controller
     public function services()
     {
 
-        $layan = services::all();
-        return view('admin.services.services', compact('layan'));
+        $servi = services::all();
+        return view('admin.services.services', compact('servi'));
     }
     public function search_services(Request $request)
     {
         if ($request) {
-            $layan = services::where('services_name', 'like', '%' . $request->search_services . '%')
+            $servi = services::where('services_name', 'like', '%' . $request->search_services . '%')
                 ->get();
 
-            if ($layan->isEmpty()) {
-                $layan = services::where('code', 'like', '%' . $request->search_services . '%')
+            if ($servi->isEmpty()) {
+                $servi = services::where('code', 'like', '%' . $request->search_services . '%')
                     ->get();
             }
 
 
-            return view('admin.services.services', compact('layan'));
+            return view('admin.services.services', compact('servi'));
         } else {
             return redirect('/admin/services');
         }

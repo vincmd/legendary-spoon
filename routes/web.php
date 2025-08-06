@@ -34,17 +34,13 @@ Route::post('/login', [logincontroller::class, 'check'])->name("checking");
 //|   laman dan fitur admin                    |
 // ---------------------------------------------
 Route::get('/admin', [admincontroller::class, 'index'])->middleware(['auth', 'verified']);
-Route::get('/admin/services', [ServicesController::class, 'services']);
-Route::get('/admin/services/search', [ServicesController::class, 'search_services'])->name('search_services');
+Route::get('/admin/services', [AdminServicescontroller::class, 'services']);
+Route::get('/admin/services/search', [AdminServicescontroller::class, 'search_services'])->name('search_services');
 Route::get('/admin/services/new', function () {
     return view('admin.services.new-services');
 });
-Route::Post('/admin/services/add', [Servicescontroller::class, 'services_new'])->name('services.create');
-Route::delete('/admin/services/delete/{id}', [ServicesController::class, 'services_destroy'])->name('services.destroy');
-
-
-// -------------account---------------------------
-
+Route::Post('/admin/services/add', [AdminServicescontroller::class, 'services_new'])->name('services.create');
+Route::delete('/admin/services/delete/{id}', [AdminServicescontroller::class, 'services_destroy'])->name('services.destroy');
 
 // Tampilkan daftar akun (bisa dengan pencarian)
 // -------------account---------------------------
@@ -53,8 +49,8 @@ Route::get('/admin/account/new', function () {
     return view('admin.account.account-new');
 })->middleware('auth', 'verified')->name('account.new');
 Route::post('/admin/account/new/add', [AccountController::class, 'add_acc'])->middleware('auth', 'verified')->name("add.account");
-Route::delete('/admin/account/del/{id}', [AccountController::class, 'removeacc'])->middleware('auth', 'verified')->name('acc.destroy');
-Route::get('/admin/account/search', [AccountController::class, 'account'])
+Route::delete('/admin/account/del/{id}', [AccountController::class, 'remove_acc'])->middleware('auth', 'verified')->name('acc.destroy');
+Route::get('/admin/account/search', [AccountController::class, 'search_acc'])
     ->middleware(['auth', 'verified'])
     ->name('search_acc');
 

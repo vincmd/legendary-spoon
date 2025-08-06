@@ -122,7 +122,7 @@
                     <div class="relative">
                         <form action="{{ route('search_services') }}" method="get" >
                         @csrf
-                            <input type="text" name="search_layanan" id=""
+                            <input type="text" name="search_services" id=""
                                 class="bg-slate-200 w-48 h-8 border border-black rounded-lg pl-2  " placeholder="search"
                                 style=" background:url({{ asset('aset/search-interface-symbol.png') }});
                                     background-size: 20px 20px;
@@ -148,18 +148,18 @@
                     <tbody>
 
 
-                        @foreach ($layan as $layanan)
+                        @foreach ($servi as $services)
                             <tr>
                                 <td class="border border-black font-mono font-semibold text-center">
                                     {{ $loop->iteration }}</td>
 
                                 <td class="border border-black font-mono font-semibold pl-1">
-                                    {{ $layanan->services_name }}</td>
-                                <td class="border border-black font-mono font-semibold pl-1">{{ $layanan->code }}</td>
+                                    {{ $services->services_name }}</td>
+                                <td class="border border-black font-mono font-semibold pl-1">{{ $services->code }}</td>
                                 <td class="border border-black font-mono font-semibold pl-1"><img src=""
                                         alt="logo"></td>
                                 <td class="border border-black font-mono font-semibold pl-1">
-                                    <form method="POST" action="{{ route('services.destroy', $layanan->id) }}"
+                                    <form method="POST" action="{{ route('services.destroy', $services->id) }}"
                                         onsubmit="return confirm('Are you sure?');">
                                         @csrf
                                         @method('DELETE')

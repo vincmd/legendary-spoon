@@ -139,7 +139,7 @@
                     <img src="{{ asset('aset/partnership.png') }}" alt="" class="w-12 h-12" />
                     <div>
                     <div class="text-xl font-bold">JUMLAH LAYANAN</div>
-                     <div class="text-2xl text-center font-bold">{{ $layans }}</div>
+                     <div class="text-2xl text-center font-bold">{{ $servi }}</div>
                      </div>
                 </div>
             </div>

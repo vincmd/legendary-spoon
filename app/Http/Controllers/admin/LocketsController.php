@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LocketsController extends Controller
 {
-   public function lockets()
+    public function lockets()
     {
         $emails = User::all();
         $lockets = lockets::all();
@@ -38,23 +38,23 @@ class LocketsController extends Controller
     {
         $emails = User::all();
         $lockets = lockets::all();
-        $yap = [];
+        $sorted = [];
 
         if ($lockets->isEmpty()) {
-            foreach ($emails as $ay) {
-                array_push($yap, $ay);
+            foreach ($emails as $email) {
+                array_push($sorted, $email);
             }
         }
         foreach ($lockets as $datas) {
             foreach ($emails as $checkemail) {
                 if ($datas->email_user !== $checkemail->email) {
-                    array_push($yap, $checkemail);
+                    array_push($sorted, $checkemail);
                 } else {
                     continue;
                 }
             }
         }
-        return view('admin.loket.loket-new', compact('yap'));
+        return view('admin.loket.loket-new', compact('sorted'));
     }
 
 

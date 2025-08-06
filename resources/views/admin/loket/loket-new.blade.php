@@ -134,7 +134,7 @@
                         <select name="email" id=""
                             class="w-full border border-black rounded-lg bg-white pl-5">
                             <option value=" ">pilih email</option>
-                            @foreach ($yap as $email)
+                            @foreach ($sorted as $email)
                                 <option value="{{ $email->email }}">{{ $email->email }}</option>
                             @endforeach
                         </select>
