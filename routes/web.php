@@ -49,6 +49,7 @@ Route::get('/admin/account', [Accountcontroller::class, 'account'])->middleware(
 Route::get('/admin/account', [Accountcontroller::class, 'search_acc'])->name('search_acc');
 Route::get('/admin/account/new', function () {
     return view('admin.account.account-new');
+
 })->middleware('auth', 'verified');
 Route::post('/admin/account/new/add', [Accountcontroller::class, 'add_acc'])->name("add.account");
 Route::delete('/admin/account/del/{id}', [Accountcontroller::class, 'removeacc'])->name('acc.destroy');
