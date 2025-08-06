@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\admin\Accountcontroller;
+use App\Http\Controllers\admin\LocketsController;
+use App\Http\Controllers\admin\RunningTextController;
 use App\Http\Controllers\admin\Admincontroller;
 use App\Http\Controllers\kioskcontrollrt;
 use App\Http\Controllers\loginController;
@@ -49,6 +51,10 @@ Route::delete('/admin/services/delete/{id}', [ServicesController::class, 'servic
 //|   admin acces / account                    |
 // ---------------------------------------------
 // Tampilkan daftar akun (bisa dengan pencarian)
+// -------------account---------------------------
+
+
+// Tampilkan daftar akun (bisa dengan pencarian)
 Route::get('/admin/account', [AccountController::class, 'account'])->middleware(['auth', 'verified'])->name('account.list');
 // Tampilkan form tambah akun
 Route::get('/admin/account/new', function () {
@@ -58,7 +64,6 @@ Route::get('/admin/account/new', function () {
 Route::post('/admin/account/new/add', [AccountController::class, 'add_acc'])->middleware('auth', 'verified')->name("add.account");
 // Hapus akun
 Route::delete('/admin/account/del/{id}', [AccountController::class, 'removeacc'])->middleware('auth', 'verified')->name('acc.destroy');
-// cari akun
 Route::get('/admin/account/search', [AccountController::class, 'account'])
     ->middleware(['auth', 'verified'])
     ->name('search_acc');
@@ -66,17 +71,17 @@ Route::get('/admin/account/search', [AccountController::class, 'account'])
 // ==============================================
 //|   admin locket                              |
 // ---------------------------------------------
-Route::get('/admin/locket', [admincontroller::class, 'lockets']);
-Route::get('/admin/locket', [admincontroller::class, 'search_locket'])->name('search_locket');
-Route::get('/admin/locket/new', [admincontroller::class, 'locket_add_data']);
-Route::post('/admin/locket/news', [admincontroller::class, 'locket_new'])->name('locket.create');
-Route::delete('/admin/locket/del/{id}', [admincontroller::class, 'locket_destroy'])->name('locket.destroy');
+Route::get('/admin/locket', [LocketsController::class, 'lockets']);
+Route::get('/admin/locket', [LocketsController::class, 'search_locket'])->name('search_locket');
+Route::get('/admin/locket/new', [LocketsController::class, 'locket_add_data']);
+Route::post('/admin/locket/news', [LocketsController::class, 'locket_new'])->name('locket.create');
+Route::delete('/admin/locket/del/{id}', [LocketsController::class, 'locket_destroy'])->name('locket.destroy');
 
 // ==============================================
 //|  admin running text page                    |
 // ---------------------------------------------
-Route::get('/admin/running_text', [admincontroller::class, 'running_text']);
-Route::post('/admin/running_text/update', [admincontroller::class, 'update_text'])->name('update_text');
+Route::get('/admin/running_text', [RunningTextController::class, 'running_text']);
+Route::post('/admin/running_text/update', [RunningTextController::class, 'update_text'])->name('update_text');
 
 // ==============================================
 //|   admin video                               |
