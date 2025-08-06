@@ -92,5 +92,5 @@ Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush
 Route::get("/logout", [admincontroller::class, 'logout']);
 
 Route::get('/tes', function () {
-    return view('template.test');
+    return view('template.main');
 });
