@@ -32,7 +32,6 @@ Route::post('/login', [logincontroller::class, 'check'])->name("checking");
 //|   laman dan fitur admin                    |
 // ---------------------------------------------
 Route::get('/admin', [admincontroller::class, 'index'])->middleware(['auth', 'verified']);
-
 Route::get('/admin/services', [ServicesController::class, 'services']);
 Route::get('/admin/services/search', [ServicesController::class, 'search_services'])->name('search_services');
 Route::get('/admin/services/new', function () {
@@ -43,17 +42,25 @@ Route::delete('/admin/services/delete/{id}', [ServicesController::class, 'servic
 
 
 // -------------account---------------------------
-Route::get('/admin/account', [Accountcontroller::class, 'account'])->middleware('auth', 'verified');
-Route::get('/admin/account', [Accountcontroller::class, 'search_acc'])->name('search_acc');
-Route::get('/admin/account', [Accountcontroller::class, 'account'])->middleware('auth', 'verified');
-Route::get('/admin/account', [Accountcontroller::class, 'search_acc'])->name('search_acc');
+
+
+// Tampilkan daftar akun (bisa dengan pencarian)
+Route::get('/admin/account', [AccountController::class, 'account'])->middleware(['auth', 'verified'])->name('account.list');
+
+// Tampilkan form tambah akun
 Route::get('/admin/account/new', function () {
     return view('admin.account.account-new');
-})->middleware('auth', 'verified');
-Route::post('/admin/account/new/add', [Accountcontroller::class, 'add_acc'])->name("add.account");
-Route::delete('/admin/account/del/{id}', [Accountcontroller::class, 'removeacc'])->name('acc.destroy');
-Route::post('/admin/account/new/add', [Accountcontroller::class, 'add_acc'])->name("add.account");
-Route::delete('/admin/account/del/{id}', [Accountcontroller::class, 'removeacc'])->name('acc.destroy');
+})->middleware('auth', 'verified')->name('account.new');
+
+// Simpan akun baru
+Route::post('/admin/account/new/add', [AccountController::class, 'add_acc'])->middleware('auth', 'verified')->name("add.account");
+
+// Hapus akun
+Route::delete('/admin/account/del/{id}', [AccountController::class, 'removeacc'])->middleware('auth', 'verified')->name('acc.destroy');
+// cari akun
+Route::get('/admin/account/search', [AccountController::class, 'account'])
+    ->middleware(['auth', 'verified'])
+    ->name('search_acc');
 
 Route::get('/admin/locket', [admincontroller::class, 'lockets']);
 Route::get('/admin/locket', [admincontroller::class, 'search_locket'])->name('search_locket');
