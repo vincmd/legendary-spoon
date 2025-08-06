@@ -8,7 +8,7 @@
 
         {{-- @include('template.parts.cta') --}}
 
-        {{-- @include('template.parts.card') --}}
+        @include('template.parts.card')
 
         {{-- @include('template.parts.table.table') --}}
 

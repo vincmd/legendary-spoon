@@ -30,7 +30,7 @@ class admincontroller extends Controller
         $que_today = Queues::whereDate('dates', Carbon::today())->count();
         $loket = lockets::count();
 
-        return view('admin.admin', compact('users', 'layans', 'que_all', 'que_today', 'loket'));
+        return view('admin.index.admin', compact('users', 'layans', 'que_all', 'que_today', 'loket'));
     }
 
     public function lockets()
