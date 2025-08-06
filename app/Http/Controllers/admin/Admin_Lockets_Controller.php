@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LocketsController extends Controller
+class Admin_Lockets_Controller extends Controller
 {
     public function lockets()
     {

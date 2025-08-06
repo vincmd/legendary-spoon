@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class AccountController extends Controller
+class Admin_Account_Controller extends Controller
 {
     /**
      * Display a listing of the resource.

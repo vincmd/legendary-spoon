@@ -6,12 +6,12 @@ use App\Models\RunningText;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RunningTextController extends Controller
+class Admin_RunningText_Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-  public function running_text()
+    public function running_text()
     {
         $running_text = RunningText::all()->first();
         if (!$running_text) {
