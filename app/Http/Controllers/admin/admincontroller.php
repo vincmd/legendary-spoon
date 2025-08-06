@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use function Laravel\Prompts\search;
 
-class admincontroller extends Controller
+class Admincontroller extends Controller
 {
 
     public function index()
