@@ -6,7 +6,7 @@ use App\Models\services;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class Servicescontroller extends Controller
+class Admin_Services_Controller extends Controller
 {
     public function services()
     {
