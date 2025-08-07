@@ -6,7 +6,7 @@
             Dashboard
         </h2>
 
-        {{-- @include('template.parts.cta') --}}
+        @include('template.parts.cta')
 
         @include('template.parts.card')
 
