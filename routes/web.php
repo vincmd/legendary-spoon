@@ -78,7 +78,7 @@ Route::get('/admin/account/search', [Admin_Account_Controller::class, 'search_ac
 Route::get('/admin/locket', [Admin_Lockets_Controller::class, 'lockets'])->middleware('auth', 'verified');
 Route::get('/admin/locket', [Admin_lockets_controller::class, 'search_locket'])->name('search_locket')->middleware('auth', 'verified');
 Route::get('/admin/locket/new', [Admin_Lockets_Controller::class, 'locket_add_data'])->middleware('auth', 'verified');
-Route::post('/admin/locket/news', [Admin_Lockets_Controller::class, 'locket_new'])->name('locket.create')->middleware('auth', 'verified');
+Route::post('/admin/locket/store', [Admin_Lockets_Controller::class, 'locket_new'])->name('locket.store')->middleware('auth', 'verified');
 Route::delete('/admin/locket/del/{id}', [Admin_Lockets_Controller::class, 'locket_destroy'])->name('locket.destroy');
 
 // ==============================================

@@ -16,7 +16,7 @@ class Admin_Account_Controller extends Controller
     {
         $users = User::all();
 
-        return view('admin.account.account', compact('users'));
+        return view('admin.account.index.account', compact('users'));
     }
 
     /**

@@ -39,7 +39,7 @@
         ],
         [
             'status' => false,
-            'name' => 'acces',
+            'name' => 'account',
             'href' => '/admin/account',
             'icon' => $logo['user'],
         ],

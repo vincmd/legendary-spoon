@@ -6,7 +6,7 @@
     <div class="container px-6 mx-auto grid">
         {{-- title --}}
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Admin / locket
+            <a href="/admin" class="hover:text-purple-500">Admin</a> / <a href="/admin/locket">Locket</a>
         </h2>
 
         @include('admin.loket.main-admin-locket.locket-cta')
