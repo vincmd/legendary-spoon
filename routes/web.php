@@ -46,10 +46,11 @@ Route::get('/admin', [Admincontroller::class, 'index'])->middleware(['auth', 've
 Route::get('/admin/services', [Admin_Services_Controller::class, 'services']);
 Route::get('/admin/services/search', [Admin_Services_Controller::class, 'search_services'])->name('search_services');
 Route::get('/admin/services/new', function () {
-    return view('admin.services.new-services');
+    return view('admin.services.new-services.new-services');
 });
 Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'verified']);
 Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
+Route::Post('/upload-temp-logo',[Admin_Services_controller::class,'temp_logo']);
 
 
 // ==============================================
@@ -115,9 +116,16 @@ Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush
 /// logout
 Route::get("/logout", [logincontroller::class, 'logout']);
 
+
+
+
 Route::get('/template-main', function () {
     return view('template.main');
 });
 Route::get('/template-form', function () {
     return view('template.form.forms');
+});
+
+Route::get('/template-modal',function(){
+    return view('template.modal.main-modal');
 });
