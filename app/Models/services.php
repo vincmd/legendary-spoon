@@ -11,6 +11,7 @@ class services extends Model
     protected $fillable = [
         'services_name',
         'code',
-        'path',
+        'logo_path',
+
     ];
 }

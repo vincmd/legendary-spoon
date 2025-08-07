@@ -38,12 +38,10 @@ class Admin_Services_Controller extends Controller
         $request->validate([
             'services_name' => 'required',
             'code' => 'required',
+            'logo' => 'required|image|mimes:jpeg,jpg,png'
         ]);
-        $logo_path = '-';
-        if ($request->file('logo')) {
-            $logo_path = 0;
-            $logo_path = $request->file('logo')->store('logo');
-        }
+        $logo_path = $request->file('logo')->store('logo', 'public');
+
         services::create([
             'services_name' => $request->input('services_name'),
             'code' => $request->input('code'),
