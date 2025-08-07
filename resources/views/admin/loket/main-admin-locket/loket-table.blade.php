@@ -15,8 +15,8 @@
 
 
                 @foreach ($lockets as $item)
-                    @include('admin.loket.row-table-locket', [
-                        ($lockets = [
+                    @include('admin.loket.main-admin-locket.row-table-locket', [
+                        ($locket_table = [
                             'index' => $loop->iteration,
                             'email' => $item->email_user,
                             'alias' => $item->alias,
