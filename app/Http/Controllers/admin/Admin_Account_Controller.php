@@ -39,28 +39,6 @@ class Admin_Account_Controller extends Controller
             ]
         );
 
-
-        return back();
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        User::create(
-            [
-                'name' => $request->input('name'),
-                'password' => Hash::make($request->input('password')),
-                'email' => $request->input('email'),
-
-            ]
-        );
-
-
         return back();
     }
 
