@@ -20,6 +20,7 @@ class Admin_RunningText_Controller extends Controller
         } else {
             session()->put('test', true);
         }
+        $running_text=$running_text->texts;
         return view('admin.running_text.running_text', compact('running_text'));
     }
     public function update_text(Request $request)

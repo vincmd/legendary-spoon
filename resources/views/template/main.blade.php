@@ -1,3 +1,6 @@
+@php
+    session('open_tab','running text')
+@endphp
 @include('template.body')
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">

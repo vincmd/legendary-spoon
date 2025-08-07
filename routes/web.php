@@ -121,9 +121,16 @@ Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush
 /// logout
 Route::get("/logout", [logincontroller::class, 'logout']);
 
+
+
+
 Route::get('/template-main', function () {
     return view('template.main');
 });
 Route::get('/template-form', function () {
     return view('template.form.forms');
+});
+
+Route::get('/template-modal',function(){
+    return view('template.modal.main-modal');
 });
