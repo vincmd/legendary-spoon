@@ -8,8 +8,8 @@
     <td class="px-4 py-3 text-sm">
         {{ $locket_table['email'] }}
     </td>
-    <td class="px-4 py-3 text-xs">
-        <span class="px-2 py-1 font-semibold leading-tight bg-green-100 rounded-full  dark:text-green-100">
+    <td class="px-4 py-3 text-sm">
+        <span class="px-2 py-1 font-semibold leading-tight ">
             {{ $locket_table['alias'] }}
         </span>
     </td>

@@ -60,11 +60,12 @@ class Admin_Lockets_Controller extends Controller
 
     public function locket_new(Request $request)
     {
+        // dd($request);
         $request->validate([
             'alias' => 'required',
-            'email' => 'required',
+            'emails' => 'required',
         ]);
-        $emails = User::where('email', $request->email)->first();
+        $emails = User::where('email', $request->emails)->first();
         lockets::create([
             'alias' => $request->input('alias'),
 
