@@ -12,6 +12,7 @@ use App\Http\Controllers\admin\ServicesController;
 use App\Http\Controllers\admin\Admin_RunningText_Controller;
 use App\Http\Controllers\admin\Admin_Services_Controller;
 use App\Http\Controllers\admin\Servicescontroller as AdminServicescontroller;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
 // ==============================================
@@ -46,8 +47,8 @@ Route::get('/admin/services/search', [Admin_Services_Controller::class, 'search_
 Route::get('/admin/services/new', function () {
     return view('admin.services.new-services');
 });
-Route::Post('/admin/services/add', [Servicescontroller::class, 'services_new'])->name('services.create');
-Route::delete('/admin/services/delete/{id}', [ServicesController::class, 'services_destroy'])->name('services.destroy');
+Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'Verified']);
+Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
 
 
 // ==============================================
@@ -74,40 +75,40 @@ Route::get('/admin/account/search', [Admin_Account_Controller::class, 'search_ac
 // ==============================================
 //|   admin locket                              |
 // ---------------------------------------------
-Route::get('/admin/locket', [Admin_Lockets_Controller::class, 'lockets']);
-Route::get('/admin/locket', [Admin_lockets_controller::class, 'search_locket'])->name('search_locket');
-Route::get('/admin/locket/new', [Admin_Lockets_Controller::class, 'locket_add_data']);
-Route::post('/admin/locket/news', [Admin_Lockets_Controller::class, 'locket_new'])->name('locket.create');
+Route::get('/admin/locket', [Admin_Lockets_Controller::class, 'lockets'])->middleware('auth', 'verified');
+Route::get('/admin/locket', [Admin_lockets_controller::class, 'search_locket'])->name('search_locket')->middleware('auth', 'verified');
+Route::get('/admin/locket/new', [Admin_Lockets_Controller::class, 'locket_add_data'])->middleware('auth', 'verified');
+Route::post('/admin/locket/news', [Admin_Lockets_Controller::class, 'locket_new'])->name('locket.create')->middleware('auth', 'verified');
 Route::delete('/admin/locket/del/{id}', [Admin_Lockets_Controller::class, 'locket_destroy'])->name('locket.destroy');
 
 // ==============================================
 //|  admin running text page                    |
 // ---------------------------------------------
-Route::get('/admin/running_text', [Admin_RunningText_Controller::class, 'running_text']);
-Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 'update_text'])->name('update_text');
+Route::get('/admin/running_text', [Admin_RunningText_Controller::class, 'running_text'])->middleware('auth', 'verified');
+Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 'update_text'])->name('update_text')->middleware('auth', 'verified');;
 
 // ==============================================
 //|   admin video                               |
 // ---------------------------------------------
-Route::get('/admin/video', [admincontroller::class, 'videos']);
-Route::post('/admin/video/up', [admincontroller::class, 'videos_new'])->name('video.new');
+Route::get('/admin/video', [admincontroller::class, 'videos'])->middleware('auth', 'verified');
+Route::post('/admin/video/up', [admincontroller::class, 'videos_new'])->name('video.new')->middleware('auth', 'verified');
 // ========================================================
 
 
 // ==============================================
 //|   laman kiosk                              |
 // ---------------------------------------------
-Route::get('/kiosk', [kioskcontrollrt::class, 'early']);
-Route::Post('/kiosk/add', [kioskcontrollrt::class, 'kios'])->name('kiosk-in');
+Route::get('/kiosk', [kioskcontrollrt::class, 'early'])->middleware('auth', 'verified');
+Route::Post('/kiosk/add', [kioskcontrollrt::class, 'kios'])->name('kiosk-in')->middleware('auth', 'verified');
 // ==============================================
 
 
 // ==============================================
 //|   laman loket                              |
 // ---------------------------------------------
-Route::get('/locket', [loketcontroller::class, 'index']);
-Route::post('/locket/select', [loketcontroller::class, 'select'])->name('select.lockets');
-Route::get('/locket/main', [loketcontroller::class, 'early']);
+Route::get('/locket', [loketcontroller::class, 'index'])->middleware('auth', 'verified');;
+Route::post('/locket/select', [loketcontroller::class, 'select'])->name('select.lockets')->middleware('auth', 'verified');;
+Route::get('/locket/main', [loketcontroller::class, 'early'])->middleware('auth', 'verified');;
 Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush.locket.services');
 // ==============================================
 /// logout
