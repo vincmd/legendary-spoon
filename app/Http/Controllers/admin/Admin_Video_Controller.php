@@ -6,16 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\video;
 use Illuminate\Http\Request;
 
-class VideoController extends Controller
+class Admin_Video_Controller extends Controller
 {
-    public function videos()
+    public function video()
     {
         return view('admin.video.video');
     }
 
     public function video_new(Request $request)
     {
-        $path = $request->file('video')->store('sementara');
+        $path = $request->file('video')->store('sementara', 'public');
         session()->put('path_video', $path);
         return back();
     }
