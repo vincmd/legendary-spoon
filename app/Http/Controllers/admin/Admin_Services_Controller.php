@@ -12,7 +12,7 @@ class Admin_Services_Controller extends Controller
     {
 
         $servi = services::all();
-        return view('admin.services.services', compact('servi'));
+        return view('admin.services.index.services', compact('servi'));
     }
     public function search_services(Request $request)
     {
