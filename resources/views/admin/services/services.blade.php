@@ -156,8 +156,8 @@
                                 <td class="border border-black font-mono font-semibold pl-1">
                                     {{ $services->services_name }}</td>
                                 <td class="border border-black font-mono font-semibold pl-1">{{ $services->code }}</td>
-                                <td class="border border-black font-mono font-semibold pl-1"><img src=""
-                                        alt="logo"></td>
+                                <td class="border border-black font-mono font-semibold pl-1 "><img src="{{ asset('storage/' . $services->logo_path) }}"
+                                        alt="logo" width="200" height="100"></td>
                                 <td class="border border-black font-mono font-semibold pl-1">
                                     <form method="POST" action="{{ route('services.destroy', $services->id) }}"
                                         onsubmit="return confirm('Are you sure?');">

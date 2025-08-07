@@ -146,7 +146,6 @@
                             <th class="border border-black text-lg colormain">Aksi</th>
                         </tr>
                     </thead>
-
         <tbody>
 
             @foreach($users as $user)
