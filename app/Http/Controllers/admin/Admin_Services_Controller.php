@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\services;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class Admin_Services_Controller extends Controller
 {
@@ -35,6 +36,7 @@ class Admin_Services_Controller extends Controller
 
     public function services_new(Request $request)
     {
+        // dd($request);
         $request->validate([
             'services_name' => 'required',
             'code' => 'required',
@@ -54,5 +56,20 @@ class Admin_Services_Controller extends Controller
         $input = services::findOrFail($id);
         $input->delete();
         return back();
+    }
+
+    public function temp_logo(Request $request){
+        if ($request->hasFile('file')) {
+            // dd($request);
+            $path = $request->file('file')->store('temp-logos', 'public');
+
+
+            session()->put('temporary_path','storage'.$path);
+            return response()->json([
+                'url' => asset('storage/' . $path)
+            ]);
+        }
+
+        return response()->json(['error' => 'No file uploaded'], 400);
     }
 }

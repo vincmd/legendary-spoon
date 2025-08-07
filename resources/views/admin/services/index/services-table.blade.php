@@ -6,8 +6,9 @@
                 <tr
                     class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                     <th class="px-4 py-3">No</th>
-                    <th class="px-4 py-3">nama</th>
-                    <th class="px-4 py-3">email</th>
+                    <th class="px-4 py-3">nama layanan</th>
+                    <th class="px-4 py-3">code</th>
+                    <th class="px-4 py-3">logo</th>
                     <th class="px-4 py-3">Aksi</th>
                 </tr>
             </thead>
@@ -16,7 +17,8 @@
 
                 @foreach ($servi as $items)
                     @include('admin.services.index.row-table-services', [
-                        ($item = [$loop->iteration, $items->services_name, $items->code]),
+                        'item' => ($item = [$loop->iteration, $items->services_name, $items->code]),
+                        'logo' => $items->logo_path,
                         ($ids = $items->id),
                     ])
                 @endforeach

@@ -50,6 +50,7 @@ Route::get('/admin/services/new', function () {
 });
 Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'verified']);
 Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
+Route::Post('/upload-temp-logo',[Admin_Services_controller::class,'temp_logo']);
 
 
 // ==============================================
