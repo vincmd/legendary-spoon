@@ -18,10 +18,14 @@ class Admin_Video_Controller extends Controller
     public function video_new(Request $request)
     {
         if ($request->hasFile('video')) {
-            $ids = $request->id;
             $path = $request->file('video')->store('sementara', 'public');
 
-            $update = video::findOrFail($ids);
+            $update = false;
+            if ($request->ids) {
+                $ids = $request->id;
+                $update = video::findOrFail($ids);
+            }
+            ;
             if ($update) {
                 $update->file_path = $path;
                 $update->save();
