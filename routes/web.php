@@ -11,8 +11,8 @@ use App\Http\Controllers\loketcontroller;
 use App\Http\Controllers\admin\ServicesController;
 use App\Http\Controllers\admin\Admin_RunningText_Controller;
 use App\Http\Controllers\admin\Admin_Services_Controller;
+use App\Http\Controllers\admin\Admin_Video_Controller;
 use App\Http\Controllers\admin\Servicescontroller as AdminServicescontroller;
-use App\Http\Controllers\admin\VideoController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
@@ -92,8 +92,8 @@ Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 
 // ==============================================
 //|   admin video                               |
 // ---------------------------------------------
-Route::get('/admin/video', [admincontroller::class, 'videos'])->middleware('auth', 'verified');
-Route::post('/admin/video/up', [admincontroller::class, 'videos_new'])->name('video.new')->middleware('auth', 'verified');
+Route::get('/admin/video', [Admin_Video_Controller::class, 'video'])->middleware('auth', 'verified');
+Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->name('video.new')->middleware('auth', 'verified');
 // ========================================================
 
 
@@ -112,11 +112,6 @@ Route::get('/locket', [loketcontroller::class, 'index'])->middleware('auth', 've
 Route::post('/locket/select', [loketcontroller::class, 'select'])->name('select.lockets')->middleware('auth', 'verified');;
 Route::get('/locket/main', [loketcontroller::class, 'early'])->middleware('auth', 'verified');;
 Route::delete('/locket/logout', [loketcontroller::class, 'logout'])->name('flush.locket.services');
-
-// ==============================================
-//|   laman video                              |
-// ---------------------------------------------
-
 // ==============================================
 /// logout
 Route::get("/logout", [logincontroller::class, 'logout']);
