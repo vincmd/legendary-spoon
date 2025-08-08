@@ -1,11 +1,12 @@
 @include('template.modal.modal-part.modal-parent')
-<form action="{{ route('video_new') }}" enctype="multipart/form-data" method="post">
+    <form action="{{ route('video_new') }}" enctype='multipart/form-data' method="post">
     @csrf
-    {{-- isi form --}}
-    @include('admin.video.modal-video')
+    <input type="text" name="id" id="" value="{{ $video->id }}" style="display:none;">
+        {{-- isi form --}}
+        @include('admin.video.modal-video')
 
-    {{-- button (close , submit) --}}
-    @include('template.modal.modal-part.footer-button')
-</form>
+        {{-- button (close , submit) --}}
+        @include('template.modal.modal-part.footer-button')
+    </form>
 
 @include('template.modal.modal-part.close-parent')
