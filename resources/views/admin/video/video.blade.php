@@ -112,23 +112,22 @@
                 class=" font-semibold text-xl font-sans capitalize w-full h-12 flex flex-col justify-center items-center">
                 Video</div>
             <div class="bg-white border-1 rounded border-black h-7/8 w-5/8 flex flex-col items-center justify-around ">
-                <div class="w-full h-12 flex flex-row items-center justify-start ml-35 pl-3 text-blue-300">
-                    <a href="index.php">Ganti video</a>
-                </div>
+                <div class="w-full h-12 flex flex-row items-center justify-start ml-35 pl-3">
                 <div
                     class="w-4/5 h-auto min-h-48 colorback flex justify-center items-center border border-black rounded-sm relative pl-2 pt-1">
                     <form action="{{ route('video.new') }}" method="post" enctype="multipart/form-data" class="w-full h-full">
                         @csrf
-                        @if (session('path_video'))
+                        @if (session('path_video')  )
 
-                        <video width="640" height="360" controls>
+                        <video width="350" height="360" controls>
                         <source src="{{ asset('storage/' . session('path_video')) }}" type="video/mp4">
                         </video>
                         @else
-                        <input type="file" name="video" accept="video" id="">
+                        <label for="video">Video</label>
+                        <input type="file" name="video" accept="video" placeholder="halo"    id="">
                         @endif
                          <button
-                            class="bg-green-400 w-18 h-8 border border-black rounded-lg hidden"
+                            class="bg-green-400 w-18 h-8 border border-black rounded-lg hide"
                             id="sub_but" type="submit">update</button>
                     </form>
                 </div>

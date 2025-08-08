@@ -91,7 +91,7 @@ Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 
 
 // ==============================================
 //|   admin video                               |
-// ---------------------------------------------
+// ---------------------------------------------p
 Route::get('/admin/video', [Admin_Video_Controller::class, 'video'])->middleware('auth', 'verified');
 Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->name('video.new')->middleware('auth', 'verified');
 // ========================================================
