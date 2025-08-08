@@ -10,17 +10,36 @@ class Admin_Video_Controller extends Controller
 {
     public function video()
     {
-        $video = "";
+        $video = video::first();
+
         return view('admin.video.video', compact('video'));
     }
 
     public function video_new(Request $request)
     {
-        // dd($request);
-        $path = $request->file('video')->store('sementara', 'public');
-        session()->put('path_video', $path);
-        return back();
+        if ($request->hasFile('video')) {
+            $ids = $request->id;
+            $path = $request->file('video')->store('sementara', 'public');
+
+            $update = video::findOrFail($ids);
+            if ($update) {
+                $update->file_path = $path;
+                $update->save();
+            }
+            // dd($path);
+            else {
+                video::create([
+                    'title' => 'asa',
+                    'file_path' => $path,
+                    'status' => 0,
+                ]);
+            }
+            return back()->with('success', 'Video uploaded!');
+        } else {
+            return back()->withErrors('No file uploaded.');
+        }
     }
+
 
     public function fix_up_video(Request $request)
     {

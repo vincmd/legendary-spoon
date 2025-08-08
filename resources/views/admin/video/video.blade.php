@@ -1,5 +1,5 @@
 @php
-    session()->put('open_tab','running text');
+    session()->put('open_tab','video');
 @endphp
 @include('template.body')
 <div class="container grid px-6 mx-auto">
