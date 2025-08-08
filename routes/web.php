@@ -50,7 +50,7 @@ Route::get('/admin/services/new', function () {
 });
 Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'verified']);
 Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
-Route::Post('/upload-temp-logo',[Admin_Services_controller::class,'temp_logo']);
+Route::Post('/upload-temp-logo', [Admin_Services_controller::class, 'temp_logo']);
 
 
 // ==============================================
@@ -91,9 +91,9 @@ Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 
 
 // ==============================================
 //|   admin video                               |
-// ---------------------------------------------
-Route::get('/admin/video', [Admin_Video_Controller::class, 'video'])->middleware('auth', 'verified');
-Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->name('video.new')->middleware('auth', 'verified');
+// ---------------------------------------------p
+Route::get('/admin/video', [Admin_Video_Controller::class, 'video'])->name('video')->middleware('auth', 'verified');
+Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->name('video_new')->middleware('auth', 'verified');
 // ========================================================
 
 
@@ -126,6 +126,6 @@ Route::get('/template-form', function () {
     return view('template.form.forms');
 });
 
-Route::get('/template-modal',function(){
+Route::get('/template-modal', function () {
     return view('template.modal.main-modal');
 });
