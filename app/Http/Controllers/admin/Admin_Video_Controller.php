@@ -16,8 +16,8 @@ class Admin_Video_Controller extends Controller
 
     public function video_new(Request $request)
     {
-        dd($request);
-    $path = $request->file('video')->store('sementara', 'public');
+        // dd($request);
+        $path = $request->file('video')->store('sementara', 'public');
         session()->put('path_video', $path);
         return back();
     }
