@@ -16,11 +16,9 @@ class Admin_RunningText_Controller extends Controller
         $running_text = RunningText::all()->first();
         if (!$running_text) {
             $running_text = ' ';
-            session()->put('test', false);
         } else {
-            session()->put('test', true);
+            $running_text = $running_text->texts;
         }
-        $running_text=$running_text->texts;
         return view('admin.running_text.running_text', compact('running_text'));
     }
     public function update_text(Request $request)

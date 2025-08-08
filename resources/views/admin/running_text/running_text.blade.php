@@ -7,12 +7,19 @@
         Modals
     </h2>
     <main class="h-full pb-16 overflow-y-auto">
+        {{-- text display --}}
         @include('admin.running_text.base-running-text' ,[$running_text])
+        {{-- button to open pop-up model --}}
         @include('admin.running_text.edit-button-runnign-text')
 
     </main>
 </div>
+{{-- pop up model --}}
 @include('admin.running_text.popup-modal-running-text',[$running_text])
+{{-- close pop-up --}}
+
+
+{{-- html tag close --}}
 @include('template.close')
 
 
