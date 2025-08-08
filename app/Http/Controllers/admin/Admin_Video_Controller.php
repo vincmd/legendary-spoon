@@ -25,9 +25,7 @@ class Admin_Video_Controller extends Controller
             if ($update) {
                 $update->file_path = $path;
                 $update->save();
-            }
-            // dd($path);
-            else {
+            } else {
                 video::create([
                     'title' => 'asa',
                     'file_path' => $path,
