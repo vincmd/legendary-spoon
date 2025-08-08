@@ -125,7 +125,8 @@
                         <source src="{{ asset('storage/' . session('path_video')) }}" type="video/mp4">
                         </video>
                         @else
-                        <input type="file" name="video" accept="video" id="">
+                        <label for="video"></label>
+                        <input type="file" name="video" accept="video" id="video">
                         @endif
                          <button
                             class="bg-green-400 w-18 h-8 border border-black rounded-lg hidden"
