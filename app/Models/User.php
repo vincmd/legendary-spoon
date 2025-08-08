@@ -45,4 +45,11 @@ class User extends Authenticatable
             // 'password' => 'hashed',
         ];
     }
+
+
+    public function queues()
+    {
+        return $this->hasMany(Queues::class, 'locket_id');
+        // 'services_id' is the foreign key in queues table
+    }
 }

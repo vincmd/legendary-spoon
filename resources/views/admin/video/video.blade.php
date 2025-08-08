@@ -129,7 +129,7 @@
                         <input type="file" name="video" accept="video" id="video">
                         @endif
                          <button
-                            class="bg-green-400 w-18 h-8 border border-black rounded-lg hidden"
+                            class="bg-green-400 w-18 h-8 border border-black rounded-lg hidden max-sm:"
                             id="sub_but" type="submit">update</button>
                     </form>
                 </div>
