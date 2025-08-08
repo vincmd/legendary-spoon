@@ -1,53 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+@include('template.html-head')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login </title>
-    @vite('resources/css/app.css')
-</head>
+<body>
+    <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+        <div class="flex-1 h-full  mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800"
+            style="max-width: 400px">
+            <div class="flex flex-col overflow-y-auto md:flex-row">
 
-<body class="h-[99.8vh] w-full flex flex-row justify-between items-center overflow-hidden bg-stone-100">
-    <form action="{{ Route('checking') }}" method="post"
-        class="bg-[#ffffff] p-1 border-3 border-[#636363] w-1/5 max-sm:w-8/9 max-lg:w-7/9 h-1/2 rounded-lg lg:ml-40 max-lg:m-auto ">
-        @csrf
-        <main
-            class="bg-[#FFAC26] w-full h-full rounded-lg flex flex-col justify-between ">
-            <div class="max-w-9/10 max-h-1/4 lg:hidden">
-                <img src="{{ asset('aset/logo-bapenda-kaltim.png') }}" alt="">
-            </div>
-            <div>
-                <div class="flex flex-col  p-2 justify-center items-center">
-                    <label for="" class="text-white">EMAIL</label>
-                    <input type="text" name="email" required autofocus placeholder=" MASUKKAN EMAIL"
-                        class="text-md font-mono font-semibold border border-black rounded-lg bg-white w-60 h-10 text-center">
+                <div class="flex w-full items-center justify-center p-6 sm:p-12 ">
+                    <div class="w-full">
+                        <form action="{{ Route('checking') }}" method="post">
+                            @csrf
+                            <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+                                Login
+                            </h1>
+                            <label class="block text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Email</span> 
+                                <input name="email"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="Jane Doe" />
+                            </label>
+                            <label class="block mt-4 text-sm">
+                                <span class="text-gray-700 dark:text-gray-400">Password</span>
+                                <input name="password"
+                                    class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    placeholder="***************" type="password" />
+                            </label>
+
+                            <!-- You should use a button here, as the anchor is only used for the example  -->
+                            <button
+                                class="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+
+                                Log in
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <div class="flex flex-col p-2 justify-center items-center">
-                    <label for="password" class="text-white">PASSWORD</label>
-                    <input type="password" name="password" placeholder=" MASUKKAN PASSWORD" required autocomplete="off"
-                        class="text-md font-mono font-semibold border border-black rounded-lg bg-white w-60 h-10 text-center">
-                </div>
             </div>
-            <div class="justify-center text-center text-xl text-blue-800">
-                @if (session('error'))
-                {{ session('error') }}
-                @endif
-            </div>
-            <div class="w-full flex flex-col justify-center items-center mb-1">
-                <button type="submit"
-                    class="border border-black bg-white hover:bg-lime-500 cursor-pointer rounded-2xl px-4 py-1 w-60 h-10 ">Login</button>
-            </div>
-        </main>
-
-    </form>
-
-    <div
-        class="bg-[#F3B60E] w-4/8 h-[120%] rounded-l-full flex flex-col items-end justify-center fixed z-[-1] right-0 max-lg:w-9/10">
-        <div class="bg-[#DA7B37] w-11/14 h-full rounded-l-full flex flex-col items-end justify-center">
-                <img src="{{ asset('aset/logo-bapenda-kaltim.png') }}" alt=""
-                    class=" bg-amber-50 max-w-110 mr-20 px-2 max-lg:hidden">
         </div>
     </div>
 </body>
