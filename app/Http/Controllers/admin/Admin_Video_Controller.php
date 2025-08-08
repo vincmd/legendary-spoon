@@ -17,18 +17,20 @@ class Admin_Video_Controller extends Controller
 
     public function video_new(Request $request)
     {
+        // dd($request);
         if ($request->hasFile('video')) {
             $path = $request->file('video')->store('sementara', 'public');
-
             $update = false;
-            if ($request->ids) {
+
+            if ($request->id !==null) {
                 $ids = $request->id;
                 $update = video::findOrFail($ids);
-            }
-            ;
-            if ($update) {
-                $update->file_path = $path;
-                $update->save();
+                if ($update) {
+                    $update->file_path = $path;
+                    $update->save();
+                }
+
+
             } else {
                 video::create([
                     'title' => 'asa',
