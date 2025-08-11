@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 
 class Admin_Account_Controller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function account()
     {
         $users = User::all();
