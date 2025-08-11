@@ -1,9 +1,10 @@
 @props([
-    'table_data' => ['', ''],
+    'table_data' => '',
     'un_use_col' => [],
 ]);
 @php
-   $keysToUnset = ['created_at', 'updated_at'];
+  if(!$table_data ==null){
+    $keysToUnset = ['created_at', 'updated_at'];
    foreach($un_use_col as $keys){
         array_push($keysToUnset,$keys);
    }
@@ -20,6 +21,7 @@ foreach ($table_data as &$change_data) {
     $col_name = array_keys($attributes);
     unset($col_name['0']);
 
+  }
 @endphp
 
 
