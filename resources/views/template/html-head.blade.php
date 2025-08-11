@@ -10,6 +10,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabler-icons/3.34.1/tabler-icons.min.css">
     <link rel="stylesheet" href="{{ asset('aset/css/tailwind.output.css') }}" />
     <script
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
@@ -26,4 +27,10 @@
     ></script>
     <script src="{{ asset('aset/js/charts-lines.js') }}" defer></script>
     <script src="{{ asset('aset/js/charts-pie.js') }}" defer></script>
+
+    <style>
+        .ti{
+            font-size: 150%;
+        }
+    </style>
   </head>

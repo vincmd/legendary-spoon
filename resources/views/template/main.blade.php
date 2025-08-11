@@ -1,7 +1,11 @@
 @php
     session('open_tab','running text')
 @endphp
-@include('template.body')
+{{-- @include('template.body') --}}
+@extends('template.body')
+
+@section('main')
+
 <main class="h-full overflow-y-auto">
     <div class="container px-6 mx-auto grid">
         {{-- title --}}
@@ -19,4 +23,4 @@
     </div>
 </main>
 
-@include('template.close')
+@endsection

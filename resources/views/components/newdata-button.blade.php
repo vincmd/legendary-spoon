@@ -1,3 +1,7 @@
+@props([
+    'title'=>'new',
+])
+
 @php
     $current_url = url()->current();
 @endphp
@@ -8,5 +12,6 @@
  <div class="flex items-center">
 
  </div>
- <span class="p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">Add locket &#43;</span>
+ <span class="p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple">{{ $title }} &#43;</span>
 </a>
+
