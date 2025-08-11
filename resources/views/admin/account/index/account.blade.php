@@ -10,7 +10,9 @@
 
         <x-table-comp
             :table_data="$users"
-            :un_use_col="['password','email_verified_at','remember_token']"></x-table-comp>
+            :un_use_col="['password','email_verified_at','remember_token']"
+            model_name="User">
+        </x-table-comp>
 
         </div>
     </main>

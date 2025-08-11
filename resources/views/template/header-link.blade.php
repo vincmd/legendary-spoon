@@ -16,4 +16,5 @@
             / <a href="{{ $b }}" class="hover:text-purple-500">{{ $a }}</a>
         @endif
     @endforeach
+
 </h2>
