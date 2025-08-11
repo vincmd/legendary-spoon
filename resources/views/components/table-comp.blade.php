@@ -3,6 +3,7 @@
     'un_use_col' => [],
     'model_name' => 'empty',
     'custom_col' => [],
+    'image_folder'=>'image',
 ])
 
 @php
@@ -91,7 +92,7 @@
                                 unset($row['id']);
                             @endphp
                             @foreach ($row->toArray() as $item)
-                                @if (str_contains($item, 'logo/'))
+                                @if (str_contains($item, $image_folder))
                                     <td class="px-4 py-3 w-8 h-6">
                                         <div class="flex items-center text-sm">
                                             <img src="{{ asset('storage/' . $item) }}" alt=""

@@ -14,6 +14,7 @@
                 <x-table-comp
                  :table_data="$servi"
                  :custom_col="['logo_path'=>'logo',]"
+                 image_folder="logo/"
                  ></x-table-comp>
 
 
