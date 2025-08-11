@@ -2,9 +2,10 @@
 @section('main')
     <main class="h-full pb-16 overflow-y-auto">
         <div class="container px-6 mx-auto grid">
-            @include('template.header-link')
+            <h2 class="mt-2"></h2>
+            <x-newdata-button href="/admin/account" title="back" plus="false"></x-newdata-button>
             <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
-                Elements
+                Tambah layanan
             </h4>
             <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
 
