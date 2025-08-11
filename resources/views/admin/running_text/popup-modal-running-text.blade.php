@@ -2,8 +2,7 @@
 <form action="{{ route('update_text') }}" method="post">
     @csrf
     {{-- isi form --}}
-    @include('admin.running_text.modal-runnign-text-body')
-
+    <x-modal title="Edit Text" desc_tag="Textarea" desc="{{ $running_text }}"></x-modal>
     {{-- button (close , submit) --}}
     @include('template.modal.modal-part.footer-button')
 </form>
