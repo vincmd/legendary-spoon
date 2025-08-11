@@ -35,37 +35,31 @@
     // status is for active tab
     $sidebar_buttons = [
         [
-            'status' => false,
             'name' => 'home',
             'href' => '/admin',
             'icon' => $logo['home'],
         ],
         [
-            'status' => false,
             'name' => 'account',
             'href' => '/admin/account',
             'icon' => $logo['user'],
         ],
         [
-            'status' => false,
             'name' => 'services',
             'href' => '/admin/services',
             'icon' => $logo['click'],
         ],
         [
-            'status' => false,
             'name' => 'locket',
             'href' => '/admin/locket',
             'icon' => $logo['computer'],
         ],
         [
-            'status' => false,
             'name' => 'running text',
             'href' => '/admin/running_text',
             'icon' => $logo['tables'],
         ],
          [
-            'status' => false,
             'name' => 'video',
             'href' => '/admin/video',
             'icon' => $logo['video'],
@@ -74,13 +68,10 @@
 
     // session()->put('open_tab', 'services');
     foreach ($sidebar_buttons as &$sesion_check) {
-        if ($sesion_check['name'] == session('open_tab')) {
-            $sesion_check['status'] = true;
-        } else {
-            $sesion_check['status'] = false; // Optional: reset yang lain
-        }
+        $path = ltrim($sesion_check['href'], '/');
+        $sesion_check['status'] = Request::is($path);
     }
-    unset($sesion_check); // Penting untuk menghindari masalah referensi setelah loop
+    // unset($sesion_check); // Penting untuk menghindari masalah referensi setelah loop
 
 @endphp
 
