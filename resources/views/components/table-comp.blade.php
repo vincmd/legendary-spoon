@@ -15,7 +15,6 @@
     if ($model_name !== 'empty') {
         $tableSegment = $model_name;
     }
-    // dd($tableSegment);
 
     // Convert to model class variants
     $baseClass = 'App\\Models\\' . ucfirst($tableSegment);

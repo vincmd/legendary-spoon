@@ -5,7 +5,8 @@
             {{-- title --}}
             @include('template.header-link')
 
-            @include('admin.services.index.cta-services')
+            <x-newdata-button title="New Services"></x-newdata-button>
+
 
             {{-- @include('template.parts.card') --}}
 
