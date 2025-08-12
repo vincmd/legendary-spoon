@@ -5,7 +5,7 @@ use App\Http\Controllers\admin\Admin_Account_Controller;
 use App\Http\Controllers\admin\Admin_Lockets_Controller;
 use App\Http\Controllers\admin\LocketsController;
 use App\Http\Controllers\admin\Admincontroller;
-use App\Http\Controllers\kioskcontrollrt;
+use App\Http\Controllers\Kioskcontroller;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\loketcontroller;
 use App\Http\Controllers\admin\ServicesController;
@@ -13,8 +13,10 @@ use App\Http\Controllers\admin\Admin_RunningText_Controller;
 use App\Http\Controllers\admin\Admin_Services_Controller;
 use App\Http\Controllers\admin\Admin_Video_Controller;
 use App\Http\Controllers\admin\Servicescontroller as AdminServicescontroller;
+use App\Http\Controllers\RunningText_Controller;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
+
 
 // ==============================================
 //|   untuk login                               |
@@ -46,7 +48,7 @@ Route::get('/admin', [Admincontroller::class, 'index'])->middleware(['auth', 've
 Route::get('/admin/services', [Admin_Services_Controller::class, 'services']);
 Route::get('/admin/services/search', [Admin_Services_Controller::class, 'search_services'])->name('search_services');
 Route::get('/admin/services/new', function () {
-    return view('admin.services.new-services.new-services');
+    return view('admin.services.new-services');
 });
 Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'verified']);
 Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
@@ -89,6 +91,8 @@ Route::delete('/admin/locket/del/{id}', [Admin_Lockets_Controller::class, 'locke
 Route::get('/admin/running_text', [Admin_RunningText_Controller::class, 'running_text'])->middleware('auth', 'verified');
 Route::post('/admin/running_text/update', [Admin_RunningText_Controller::class, 'update_text'])->name('update_text')->middleware('auth', 'verified');;
 
+/// running text page
+Route::get('running_text', [RunningText_Controller::class, 'index']);
 // ==============================================
 //|   admin video                               |
 // ---------------------------------------------p
@@ -100,8 +104,8 @@ Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->na
 // ==============================================
 //|   laman kiosk                              |
 // ---------------------------------------------
-Route::get('/kiosk', [kioskcontrollrt::class, 'early']);
-Route::Post('/kiosk/add', [kioskcontrollrt::class, 'kios'])->name('kiosk-in');
+Route::get('/kiosk', [kioskcontroller::class, 'early']);
+Route::Post('/kiosk/add', [Kioskcontroller::class, 'kios'])->name('kiosk-in');
 // ==============================================
 
 

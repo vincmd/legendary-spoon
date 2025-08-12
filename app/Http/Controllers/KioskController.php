@@ -7,7 +7,7 @@ use App\Models\services;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class Kioskcontrollrt extends Controller
+class KioskController extends Controller
 {
     public function early()
     {
