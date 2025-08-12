@@ -9,8 +9,7 @@
     <title>Kiosk Services</title>
     @vite('resources/css/app.css')
 </head>
-
-<body class="min-h-screen w-full flex flex-col justify-center items-center bg-white text-white">
+<body class="min-h-screen w-full flex flex-col justify-center items-center bg-white">
 
     {{-- Notifikasi --}}
     @if (session('success'))
@@ -21,7 +20,7 @@
 
     {{-- List layanan --}}
     <div class="bg-white flex justify-center items-start p-8">
-        <div class="bg-gray-100 rounded-lg shadow-md p-6">
+        <div class="bg-gray-100 rounded-lg shadow-md p-6 text-white">
         @foreach ($kiosk as $service)
             <button value="{{ $service->id }}" onclick="openForm(this)"
                 class="bg-purple-500 hover:bg-purple-700 px-4 py-2 rounded">
@@ -30,33 +29,37 @@
         @endforeach
     </div>
 </div>
-
+{{-- overflow --}}
     {{-- Popup form --}}
-    <section id="main-form"
-        class="hidden bg-gray-800 border border-gray-600 w-[400px] p-4 rounded fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg">
+    <div id="overlay" class="hidden fixed inset-0 bg-black  flex justify-center items-center z-50">
+    <section class="bg-white w-[350px] p-5 rounded-lg shadow-lg">
+        <h2 class="text-lg font-bold mb-4">Masukkan Nomor Telepon</h2>
         <form onsubmit="submitForm(event)">
-            <h2 class="text-lg font-bold mb-4">Masukkan Nomor Telepon</h2>
             <input type="text" name="phone_number" id="phone_number"
-                class="bg-gray-200 text-black px-2 py-1 w-full mb-4" placeholder="08xxxxxxxxxx">
+                class="border border-gray-300 rounded px-3 py-2 w-full mb-4"
+                placeholder="08xxxxxxxxxx" required>
 
             <div class="flex justify-end gap-2">
-                <button type="reset" onclick="closeForm()" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Batal</button>
-                <button type="submit" class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded">Kirim</button>
+                <button type="button" onclick="closeForm()"
+                    class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">Batal</button>
+                <button type="submit"
+                    class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Kirim</button>
             </div>
-        </form>
-    </section>
+            </form>
+        </section>
+        </div>
+
 
     <script>
         function openForm(button) {
             localStorage.setItem('selected_service', button.value);
-            document.getElementById('main-form').classList.remove('hidden');
+            document.getElementById('overlay').classList.remove('hidden');
         }
 
         function closeForm() {
-            document.getElementById('main-form').classList.add('hidden');
-            localStorage.removeItem('selected_service');
-        }
 
+            document.getElementById('overlay').classList.add('hidden');
+        }
         function submitForm(event) {
             event.preventDefault();
             const nomor_telp = document.getElementById('phone_number').value;
@@ -85,6 +88,12 @@
             } else {
                 alert('Nomor telepon minimal 8 digit.');
             }
+            document.getElementById('overlay').addEventListener('click', function(e) {
+            if (e.target.id === 'overlay') {
+            closeForm();
+            }
+            });
+
         }
     </script>
 </body>
