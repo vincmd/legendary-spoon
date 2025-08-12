@@ -100,8 +100,8 @@ Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->na
 // ==============================================
 //|   laman kiosk                              |
 // ---------------------------------------------
-Route::get('/kiosk', [kioskcontrollrt::class, 'early'])->middleware('auth', 'verified');
-Route::Post('/kiosk/add', [kioskcontrollrt::class, 'kios'])->name('kiosk-in')->middleware('auth', 'verified');
+Route::get('/kiosk', [kioskcontrollrt::class, 'early']);
+Route::Post('/kiosk/add', [kioskcontrollrt::class, 'kios'])->name('kiosk-in');
 // ==============================================
 
 
