@@ -18,23 +18,47 @@
 
                 <div class=" bg-white dark:bg-gray-800  rounded flex flex-row justify-center items-center"
                     style="width: 45% ; height: 100%;">
-                    <video autoplay muted id="myVideo" controls playsinline>
-  <source src="http://127.0.0.1:8000/storage/sementara/tifjGUBcyqJUsckUHPQKJbC37B7QHWXkFWqi0MWT.mp4" type="video/mp4">
-</video>
+                    <video muted id="myVideo" playsinline src="{{ $video }}">
+
+                    </video>
                 </div>
             </div>
             <script>
+                const video = document.getElementById('myVideo');
                 window.addEventListener('DOMContentLoaded', () => {
-                    const video = document.getElementById('myVideo');
 
-                    // Restore playback time on load
-                    const savedTime = localStorage.getItem('videoTime');
-                    if (savedTime) {
-                        video.currentTime = parseFloat(savedTime);
-                    }
-                    video.play();
 
-                    // Save playback time before unload
+                    // Muted videos can autoplay, so we can try to play it immediately after metadata is loaded.
+                    video.muted = true; // Ensure the muted attribute is set
+
+                    // Wait for the video's metadata to load before doing anything
+                    video.addEventListener('loadedmetadata', () => {
+                        // Restore playback time on load
+                        const savedTime = localStorage.getItem('videoTime');
+                        console.log(savedTime);
+                        if (savedTime) {
+                            video.currentTime = parseFloat(savedTime);
+                            console.log(video.currentTime);
+
+                            setTimeout(() => {
+                                if (video.currentTime == savedTime) {
+                                    video.currentTime = parseFloat(0);
+                                    video.play();
+                                }
+                            }, 2000);
+                        }
+
+
+                        video.play().then(() => {
+                            // console.log('Video autoplayed successfully because it is muted.');
+                        }).catch(error => {
+                            console.error('Autoplay failed:', error);
+                            // Even though it's muted, a different error might occur.
+                            // You can add a fallback here if needed.
+                        });
+                    });
+
+                    // Save playback time before the page unloads
                     window.addEventListener('beforeunload', () => {
                         localStorage.setItem('videoTime', video.currentTime);
                     });
@@ -42,13 +66,12 @@
 
 
 
-                // setInterval(() => {
-                //     location.reload();
-                // }, 8000);
+
+                setInterval(() => {
+                    location.reload();
+                    // console.log( video.currentTime);
+
+                }, 8000);
             </script>
     </main>
-
-
-
-
 @endsection

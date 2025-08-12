@@ -25,9 +25,9 @@ Route::get('/video/{filename}', function ($filename) {
     // Corrected path to include 'public'
     $path = storage_path('app/public/sementara/' . $filename);
 
-    // if (!Storage::disk('local')->exists('app/public/sementara/' . $filename)) {
-    //     abort(404);
-    // }
+         if (!file_exists($path)) {
+        abort(404);
+    }
 
     $headers = [
         'Content-Type' => 'video/mp4',
