@@ -48,7 +48,7 @@ Route::get('/admin', [Admincontroller::class, 'index'])->middleware(['auth', 've
 Route::get('/admin/services', [Admin_Services_Controller::class, 'services']);
 Route::get('/admin/services/search', [Admin_Services_Controller::class, 'search_services'])->name('search_services');
 Route::get('/admin/services/new', function () {
-    return view('admin.services.new-services.new-services');
+    return view('admin.services.new-services');
 });
 Route::Post('/admin/services/add', [Admin_Services_Controller::class, 'services_new'])->name('services.create')->middleware(['auth', 'verified']);
 Route::delete('/admin/services/delete/{id}', [Admin_Services_Controller::class, 'services_destroy'])->name('services.destroy');
