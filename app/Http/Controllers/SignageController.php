@@ -13,6 +13,8 @@ class SignageController extends Controller
     public function index()
     {
         $que = Queues::where('is_called', 1)
+            ->latest()
+            ->limit(4)
             ->get();
 
         foreach ($que as $a) {
@@ -26,9 +28,10 @@ class SignageController extends Controller
 
         $video = video::first();
         $video = $video->file_path;
-        $video =explode('/',$video);
+        $video = explode('/', $video);
         $video = "http://legendary-spoon.test/video/" . $video[1];
 
-        return view('signage.signage', compact('que','video'));
+        
+        return view('signage.signage', compact('que', 'video'));
     }
 }
