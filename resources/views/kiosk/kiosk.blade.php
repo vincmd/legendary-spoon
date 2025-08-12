@@ -9,8 +9,7 @@
     <title>Kiosk Services</title>
     @vite('resources/css/app.css')
 </head>
-
-<body class="min-h-screen w-full flex flex-col justify-center items-center bg-white text-white">
+<body class="min-h-screen w-full flex flex-col justify-center items-center bg-white">
 
     {{-- Notifikasi --}}
     @if (session('success'))
@@ -21,72 +20,96 @@
 
     {{-- List layanan --}}
     <div class="bg-white flex justify-center items-start p-8">
-        <div class="bg-gray-100 rounded-lg shadow-md p-6">
-        @foreach ($kiosk as $service)
-            <button value="{{ $service->id }}" onclick="openForm(this)"
-                class="bg-purple-500 hover:bg-purple-700 px-4 py-2 rounded">
-                {{ $service->services_name }}
-            </button>
-        @endforeach
+        <div class="bg-gray-100 rounded-lg shadow-md p-6 text-white">
+       <!-- Tombol List Services -->
+@foreach ($kiosk as $item)
+<button onclick="openPopup('{{ $item->id }}', '{{ $item->services_name }}')"
+    class="bg-purple-500 hover:bg-purple-300 text-white px-4 py-2 rounded-lg shadow-md transition duration-200">
+    {{ $item->services_name }}
+</button>
+@endforeach
+
+<!-- Popup -->
+<div id="popup-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative animate-fadeIn">
+        <!-- Tombol Close -->
+        <button onclick="closePopup()" class="absolute top-3 right-3 text-gray-400 hover:text-red-500 transition duration-200">
+            ✖
+        </button>
+        <h2 id="popup-title" class="text-xl font-semibold text-gray-800 mb-5"></h2>
+        <input type="hidden" id="services_id">
+        <input type="text" id="phone_number"
+            class="border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 w-full p-3 rounded-lg mb-5 outline-none transition"
+            placeholder="Masukkan nomor HP">
+<div class="flex justify-between gap-4 mt-4">
+  <button onclick="closePopup()"
+    class="flex-1 bg-red-500 hover:bg-red-600 text-white px-4 py-3 rounded-lg shadow-md transition duration-200">
+    Batal
+  </button>
+  <button onclick="submitForm()"
+    class="flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg transition duration-200">
+    Kirim
+  </button>
+</div>
+
+    </button>
     </div>
 </div>
 
-    {{-- Popup form --}}
-    <section id="main-form"
-        class="hidden bg-gray-800 border border-gray-600 w-[400px] p-4 rounded fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-lg">
-        <form onsubmit="submitForm(event)">
-            <h2 class="text-lg font-bold mb-4">Masukkan Nomor Telepon</h2>
-            <input type="text" name="phone_number" id="phone_number"
-                class="bg-gray-200 text-black px-2 py-1 w-full mb-4" placeholder="08xxxxxxxxxx">
+<script>
+function openPopup(id, label) {
+    document.getElementById("popup-title").innerText = "Tolong masukkan " + label;
+    document.getElementById("services_id").value = id;
+    document.getElementById("popup-overlay").classList.remove("hidden");
+    document.getElementById("popup-overlay").classList.add("flex");
+}
 
-            <div class="flex justify-end gap-2">
-                <button type="reset" onclick="closeForm()" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded">Batal</button>
-                <button type="submit" class="bg-green-500 hover:bg-green-600 px-3 py-1 rounded">Kirim</button>
-            </div>
-        </form>
-    </section>
+function closePopup() {
+    document.getElementById("popup-overlay").classList.add("hidden");
+    document.getElementById("popup-overlay").classList.remove("flex");
+}
 
-    <script>
-        function openForm(button) {
-            localStorage.setItem('selected_service', button.value);
-            document.getElementById('main-form').classList.remove('hidden');
-        }
+function submitForm() {
+    let services_id = document.getElementById("services_id").value;
+    let phone_number = document.getElementById("phone_number").value;
 
-        function closeForm() {
-            document.getElementById('main-form').classList.add('hidden');
-            localStorage.removeItem('selected_service');
-        }
+    fetch("/kiosk", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({
+            services_id: services_id,
+            phone_number: phone_number
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.success || "Data berhasil dikirim");
+        closePopup();
+        document.getElementById("phone_number").value = "";
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Gagal mengirim data");
+    });
+}
 
-        function submitForm(event) {
-            event.preventDefault();
-            const nomor_telp = document.getElementById('phone_number').value;
-            const serviceId = localStorage.getItem('selected_service');
+// Tutup popup kalau klik luar
+document.getElementById("popup-overlay").addEventListener("click", function(e) {
+    if (e.target === this) {
+        closePopup();
+    }
+});
+</script>
 
-            if (nomor_telp.length > 7) {
-                fetch(`/kiosk/add`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        },
-                        body: JSON.stringify({
-                            services_id: serviceId,
-                            phone_number: nomor_telp
-                        })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        alert(data.success || 'Data berhasil dikirim');
-                        closeForm();
-                    })
-                    .catch(err => {
-                        console.error('Error:', err);
-                    });
-            } else {
-                alert('Nomor telepon minimal 8 digit.');
-            }
-        }
-    </script>
-</body>
-
-</html>
+<style>
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+.animate-fadeIn {
+    animation: fadeIn 0.2s ease-in-out;
+}
+</style>
