@@ -12,8 +12,12 @@
                 <form enctype="multipart/form-data" action="{{ route('services.create') }}" method="post">
                     @csrf
 
-                    <x-clasoc-input-component name="services_name" label="service name"
-                        placeholder="ganti plat"></x-clasoc-input-component>
+                    <x-clasoc-input-component
+                        name="services_name"
+                        label="service name"
+                        placeholder="ganti plat"
+                        atribute="autofocus"
+                        ></x-clasoc-input-component>
 
                     <x-clasoc-input-component name="code" label="code" placeholder="A"></x-clasoc-input-component>
 
