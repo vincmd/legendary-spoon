@@ -19,33 +19,24 @@
                 <div class=" bg-white dark:bg-gray-800  rounded flex flex-row justify-center items-center"
                     style="width: 45% ; height: 100%;">
                     <video autoplay muted id="myVideo" controls playsinline>
-                        <source src="http://127.0.0.1:8000/storage/sementara/tifjGUBcyqJUsckUHPQKJbC37B7QHWXkFWqi0MWT.mp4"
-                            type="video/mp4">
-                    </video>
+  <source src="http://127.0.0.1:8000/storage/sementara/tifjGUBcyqJUsckUHPQKJbC37B7QHWXkFWqi0MWT.mp4" type="video/mp4">
+</video>
                 </div>
             </div>
             <script>
-                const video = document.getElementById('myVideo');
-console.log('seekable ranges:', video.seekable);
-console.log('seekable length:', video.seekable.length);
-
-                document.addEventListener('DOMContentLoaded', () => {
+                window.addEventListener('DOMContentLoaded', () => {
                     const video = document.getElementById('myVideo');
 
-                    video.addEventListener('loadedmetadata', () => {
-                        const savedTime = localStorage.getItem('videoTime');
-                        if (savedTime !== null) {
-                            video.currentTime = parseFloat(savedTime);
-                        }
-                        video.play().catch(e => {
-                            console.log('Play prevented:', e);
-                        });
-                    });
+                    // Restore playback time on load
+                    const savedTime = localStorage.getItem('videoTime');
+                    if (savedTime) {
+                        video.currentTime = parseFloat(savedTime);
+                    }
+                    video.play();
 
+                    // Save playback time before unload
                     window.addEventListener('beforeunload', () => {
-                        if (!video.paused) {
-                            localStorage.setItem('videoTime', video.currentTime);
-                        }
+                        localStorage.setItem('videoTime', video.currentTime);
                     });
                 });
 
@@ -56,4 +47,8 @@ console.log('seekable length:', video.seekable.length);
                 // }, 8000);
             </script>
     </main>
+
+
+
+
 @endsection

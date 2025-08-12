@@ -18,6 +18,24 @@ use App\Http\Controllers\SignageController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/video/{filename}', function ($filename) {
+    // Corrected path to include 'public'
+    $path = storage_path('app/public/sementara/' . $filename);
+
+    // if (!Storage::disk('local')->exists('app/public/sementara/' . $filename)) {
+    //     abort(404);
+    // }
+
+    $headers = [
+        'Content-Type' => 'video/mp4',
+        'Content-Disposition' => 'inline; filename="' . $filename . '"',
+    ];
+
+    return Response::file($path, $headers);
+});
 
 // ==============================================
 //|   untuk login                               |

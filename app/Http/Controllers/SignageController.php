@@ -13,6 +13,7 @@ class SignageController extends Controller
     {
         $que = Queues::where('is_called', 1)
             ->get();
+
         foreach ($que as $a) {
 
             $que[] = [
@@ -21,6 +22,7 @@ class SignageController extends Controller
             ];
         }
         // dd($que);
+
 
         return view('signage.signage', compact('que'));
     }
