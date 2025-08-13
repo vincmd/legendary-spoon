@@ -124,8 +124,8 @@ Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->na
 // ==============================================
 //|   laman kiosk                              |
 // ---------------------------------------------
-Route::get('/kiosk', [KioskController::class, 'early']);
-Route::Post('/kiosk/add', [KioskController::class, 'kios'])->name('kiosk-in');
+Route::get('/kiosk', [kioskcontroller::class, 'early']);
+Route::Post('/kiosk/add', [Kioskcontroller::class, 'kios'])->name('kiosk-in');
 // ==============================================
 
 
