@@ -16,7 +16,7 @@
                     <x-clasoc-input-component name="alias" label="alias" placeholder="A"></x-clasoc-input-component>
 
 
-                    <x-clasoc-input-component type=" " tag="select" name="email" label="email">
+                    <x-clasoc-input-component type=" " tag="select" name="emails" label="email">
                         @foreach ($sorted as $email)
                             <option value="{{ $email->email }}">{{ $email->email }}</option>
                         @endforeach
