@@ -14,7 +14,7 @@ class Admin_Lockets_Controller extends Controller
     {
         $emails = User::all();
         $lockets = lockets::all();
-        return view('admin.loket.loket', compact('lockets', 'emails'));
+        return view('admin.loket.main-admin-locket.loket', compact('lockets', 'emails'));
     }
     public function search_locket(Request $request)
     {
