@@ -6,6 +6,7 @@
 
 @section('main')
     <main class="h-full overflow-y-auto" style="width: 98%">
+       
         <div class="container px-6 mx-auto flex flex-col w-full h-full ">
             {{-- title --}}
             <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
@@ -23,6 +24,7 @@
                     </video>
                 </div>
             </div>
+            {{-- autoplay video also auto load & page refresh --}}
             <script>
                 const video = document.getElementById('myVideo');
                 window.addEventListener('DOMContentLoaded', () => {
@@ -73,5 +75,7 @@
 
                 }, 8000);
             </script>
+
+
     </main>
 @endsection

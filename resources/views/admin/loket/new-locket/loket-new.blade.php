@@ -6,7 +6,7 @@
             </h2>
 
             {{-- general Elements --}}
-            <x-newdata-button href="/admin/account" title="back" plus="false"></x-newdata-button>
+            <x-newdata-button href="/admin/locket" title="back" plus="false"></x-newdata-button>
             <h4 class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300">
                 Tambah layanan
             </h4>

@@ -90,7 +90,7 @@ Route::get('/admin/account/new', function () {
 // Simpan akun baru
 Route::post('/admin/account/new/add', [Admin_Account_Controller::class, 'add_acc'])->middleware('auth', 'verified')->name("add.account");
 // Hapus akun
-Route::delete('/admin/account/del/{id}', [Admin_Account_Controller::class, 'remove_acc'])->middleware('auth', 'verified')->name('acc.destroy');
+Route::delete('/admin/account/del/{id}', [Admin_Account_Controller::class, 'remove_acc'])->middleware('auth', 'verified')->name('account.destroy');
 Route::get('/admin/account/search', [Admin_Account_Controller::class, 'search_acc'])
     ->middleware(['auth', 'verified'])
     ->name('search_acc');

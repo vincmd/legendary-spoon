@@ -1,7 +1,8 @@
 @extends('template.body')
 @section('main')
     @php
-        session()->put('open_tab', 'home');
+
+
     @endphp
 
 
