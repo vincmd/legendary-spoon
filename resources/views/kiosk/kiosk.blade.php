@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>Kiosk Services</title>
-        @vite('resources/css/app.css')
-    </head>
-    <body class="min-h-screen w-full flex flex-col justify-center items-center bg-white">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Kiosk Services</title>
+    @vite('resources/css/app.css')
+</head>
 
-        {{-- Notifikasi --}}
-        @if (session('success'))
-            <div class="bg-green-500 px-4 py-2 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
+<body class="min-h-screen w-full flex flex-col justify-center items-center bg-white">
+
+    {{-- Notifikasi --}}
+    @if (session('success'))
+        <div class="bg-green-500 px-4 py-2 rounded mb-4">
+            {{ session('success') }}
+        </div>
+    @endif
 
     {{-- List layanan --}}
     <div class="bg-white flex justify-center items-start p-8">
@@ -53,43 +54,43 @@
         </button>
     </div>
 
-        </button>
-        </div>
-    </div>
+                    </button>
+                </div>
+            </div>
 
     <script>
         function openPopup(id, label) {
             let pesan, placeholderText;
             let normalizedLabel = label.trim().toLowerCase();
 
-    if (normalizedLabel === "ganti plat") {
-        pesan = "Tolong Masukkan Nomor Plat Anda";
-        placeholderText = "Masukkan Nomor plat";
-    } else if (normalizedLabel === "perpanjang stnk") {
-        pesan = "Tolong Masukkan Nomor STNK Anda";
-        placeholderText = "Masukkan Nomor STNK";
-    } else if (normalizedLabel === "registrasi kendaraan baru") {
-        pesan = "Silahkan Masukkan Data Kendaraan Baru Anda";
-        placeholderText = "Masukkan Data kendaraan";
-    } else {
-        pesan = "Tolong masukkan " + normalizedLabel;
-        placeholderText = "Masukkan " + normalizedLabel;
-    }
+                    if (normalizedLabel === "ganti plat") {
+                        pesan = "Tolong Masukkan Nomor Plat Anda";
+                        placeholderText = "Masukkan Nomor plat";
+                    } else if (normalizedLabel === "perpanjang stnk") {
+                        pesan = "Tolong Masukkan Nomor STNK Anda";
+                        placeholderText = "Masukkan Nomor STNK";
+                    } else if (normalizedLabel === "registrasi kendaraan baru") {
+                        pesan = "Silahkan Masukkan Data Kendaraan Baru Anda";
+                        placeholderText = "Masukkan Data kendaraan";
+                    } else {
+                        pesan = "Tolong masukkan " + normalizedLabel;
+                        placeholderText = "Masukkan " + normalizedLabel;
+                    }
 
-    document.getElementById("popup-title").innerText = pesan;
-    document.getElementById("vehicle_number").placeholder = placeholderText;
-    document.getElementById("services_id").value = id;
+                    document.getElementById("popup-title").innerText = pesan;
+                    document.getElementById("vehicle_number").placeholder = placeholderText;
+                    document.getElementById("services_id").value = id;
 
-    document.getElementById("popup-overlay").classList.remove("hidden");
-    document.getElementById("popup-overlay").classList.add("flex");
+                    document.getElementById("popup-overlay").classList.remove("hidden");
+                    document.getElementById("popup-overlay").classList.add("flex");
 
     document.getElementById("vehicle_number").focus();
     }
 
-    function closePopup() {
-        document.getElementById("popup-overlay").classList.add("hidden");
-        document.getElementById("popup-overlay").classList.remove("flex");
-    }
+                function closePopup() {
+                    document.getElementById("popup-overlay").classList.add("hidden");
+                    document.getElementById("popup-overlay").classList.remove("flex");
+                }
 
     function submitForm() {
     let services_id = document.getElementById("services_id").value;
@@ -124,12 +125,13 @@
     });
     }
 
-    // Tutup popup kalau klik luar
-    document.getElementById("popup-overlay").addEventListener("click", function(e) {
-        if (e.target === this) {
-            closePopup();
-        }
-    });
-    </script>
+                // Tutup popup kalau klik luar
+                document.getElementById("popup-overlay").addEventListener("click", function(e) {
+                    if (e.target === this) {
+                        closePopup();
+                    }
+                });
+            </script>
 
+</body>
 </body>

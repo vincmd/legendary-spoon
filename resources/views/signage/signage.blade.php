@@ -17,14 +17,24 @@
 
                 <div class=" bg-white dark:bg-gray-800  rounded " style=" width: 20px; height: 100%;"></div>
 
-                <div class=" bg-white dark:bg-gray-800  rounded flex flex-row justify-center items-center p-3"
-                    style="width: 100% ; height: 90%;">
-                    <video muted id="myVideo" playsinline src="{{ $video }}" class="rounded ">
+                <div class=" bg-white dark:bg-gray-800  rounded flex flex-col justify-between items-center p-3"
+                    style="width: 100% ; height: 100%;">
+                    <div class="height:90%;width:100%;">
+                        <video muted id="myVideo" playsinline src="{{ $video }}" class="rounded ">
 
-                    </video>
+                        </video>
+                    </div>
+                    <div id="marquee"
+                        style="white-space: nowrap;overflow: hidden;width: 100%;height:8%; " class="bg-gray-300">
+                        <span id="marquee-text" style=" text-transform: capitalize ;display: inline-block;will-change: transform; font-weight: bolder;" class="text-2xl dark:text-white text-gray-600 ">
+                            {{ $text }}
+                        </span>
+                    </div>
+
+
                 </div>
             </div>
-            {{-- autoplay video also auto load & page refresh --}}
+            {{-- autoplay video also auto load  --}}
             <script>
                 const video = document.getElementById('myVideo');
                 window.addEventListener('DOMContentLoaded', () => {
@@ -65,17 +75,36 @@
                         localStorage.setItem('videoTime', video.currentTime);
                     });
                 });
+            </script>
 
+            {{-- running text also auto load --}}
+            <script>
+                let marquee = document.getElementById('marquee-text');
+                let parentWidth = marquee.parentElement.offsetWidth;
+                let position = parseFloat(localStorage.getItem('marqueePos')) || parentWidth; // start or resume
 
+                function scrollText() {
+                    position -= 1; // speed: smaller = slower
+                    marquee.style.transform = `translateX(${position}px)`;
 
+                    if (position < -marquee.offsetWidth) {
+                        position = parentWidth; // reset after text fully passes
+                    }
 
+                    localStorage.setItem('marqueePos', position); // save position
+                    requestAnimationFrame(scrollText);
+                }
+
+                scrollText();
+            </script>
+            {{-- page refresh --}}
+            <script>
                 setInterval(() => {
                     // location.reload();
                     // console.log( video.currentTime);
 
                 }, 8000);
             </script>
-
 
     </main>
 @endsection
