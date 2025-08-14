@@ -98,7 +98,7 @@
                 <h1 class="text-2xl font-bold font-sans capitalize">pelayanan</h1>
             </div>
             <div class="w-5/9 p-4 h-2/3 bg-white rounded">
-                <h2 class="text-xl font-sans font-semibold mb-4">Pilih layanana loket</h2>
+                <h2 class="text-xl font-sans font-semibold mb-4">Pilih layanan loket</h2>
                 <h2 class="text-lg font-medium font-sans">layanan loket</h2>
                 <form action="{{ route('select.lockets') }}" method="post"
                     class="  w-full flex flex-col justify-between h-8/10 p-2">

@@ -22,7 +22,7 @@
                         value="{{ old('name') }}"></x-clasoc-input-component>
                     <x-clasoc-input-component label="email" type="email" name="email" value="{{ old('email') }}"
                         placeholder="john@gmail.com"></x-clasoc-input-component>
-                    <x-clasoc-input-component label="password" type="text" name="password" value="{{ old('password') }}"
+                    <x-clasoc-input-component label="password" type="password" name="password" value="{{ old('password') }}"
                         placeholder="*******"></x-clasoc-input-component>
                     <br>
                     <x-form-button></x-form-button>

@@ -21,7 +21,7 @@ class Admin_Account_Controller extends Controller
      */
     public function add_acc(Request $request)
     {
-// dd($request);
+        // dd($request);
         $request->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
