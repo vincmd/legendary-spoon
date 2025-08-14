@@ -30,6 +30,39 @@
                     {{ $item['data'] }}
                 </p>
             </div>
+
+            {{-- under construction ======================================================= --}}
+            @if ($item['status'])
+                @php
+                    $que_code = $item['data'];
+                    // $code_leght=Str::length($que_code);
+                    $char_code = str_split($que_code);
+
+                    $library = [
+                        'start' => asset('aset/audio/start.mp3'),
+                        'nomor' => asset('aset/audio/nomor.mp3'),
+                        'antrian' => asset('aset/audio/antrian.mp3'),
+                        'silahkan'=>asset('aset/audio/silahkan.mp3'),
+                        'menuju'=>asset('aset/audio/menuju.mp3'),
+                        'loket'=>asset('aset/audio/loket.mp3'),
+                    ];
+
+                    // Letters A–Z
+                    foreach (range('A', 'Z') as $letter) {
+                        $library[strtolower($letter)] = asset("aset/audio/huruf/{$letter}.mp3");
+                    }
+
+                    // Numbers 0–9
+                    foreach (range(0, 9) as $num) {
+                        $library[(string) $num] = asset("aset/audio/angka/{$num}.mp3");
+                    }
+
+                    dd($library);
+
+                @endphp
+                <script></script>
+            @endif
+            {{-- ============================================================== --}}
         </div>
         <!-- Card -->
     @endforeach

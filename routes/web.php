@@ -18,6 +18,24 @@ use App\Http\Controllers\SignageController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
+
+Route::get('/video/{filename}', function ($filename) {
+    // Corrected path to include 'public'
+    $path = storage_path('app/public/sementara/' . $filename);
+
+         if (!file_exists($path)) {
+        abort(404);
+    }
+
+    $headers = [
+        'Content-Type' => 'video/mp4',
+        'Content-Disposition' => 'inline; filename="' . $filename . '"',
+    ];
+
+    return Response::file($path, $headers);
+});
 
 // ==============================================
 //|   untuk login                               |
@@ -72,7 +90,7 @@ Route::get('/admin/account/new', function () {
 // Simpan akun baru
 Route::post('/admin/account/new/add', [Admin_Account_Controller::class, 'add_acc'])->middleware('auth', 'verified')->name("add.account");
 // Hapus akun
-Route::delete('/admin/account/del/{id}', [Admin_Account_Controller::class, 'remove_acc'])->middleware('auth', 'verified')->name('acc.destroy');
+Route::delete('/admin/account/del/{id}', [Admin_Account_Controller::class, 'remove_acc'])->middleware('auth', 'verified')->name('account.destroy');
 Route::get('/admin/account/search', [Admin_Account_Controller::class, 'search_acc'])
     ->middleware(['auth', 'verified'])
     ->name('search_acc');
@@ -105,8 +123,8 @@ Route::post('/admin/video/up', [Admin_Video_Controller::class, 'video_new'])->na
 // ==============================================
 //|   laman kiosk                              |
 // ---------------------------------------------
-Route::get('/kiosk', [KioskController::class, 'early']);
-Route::Post('/kiosk/add', [KioskController::class, 'kios']);
+Route::get('/kiosk', [kioskcontroller::class, 'early']);
+Route::Post('/kiosk/add', [Kioskcontroller::class, 'kios'])->name('kiosk-in');
 // ==============================================
 
 
