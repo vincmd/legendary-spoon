@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\queues;
-use App\Models\services;
+use App\Models\Queues;
+use App\Models\Services;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -11,46 +11,57 @@ class KioskController extends Controller
 {
     public function early()
     {
-        $kiosk = services::all();
-
+        $kiosk = Services::all();
         return view('kiosk.kiosk', compact('kiosk'));
     }
 
     public function kios(Request $request)
     {
         try {
-
+            // Validasi
             $request->validate([
-                // 'phone_number',
-                // 'first_letter',
-                // 'plate_number',
-                // 'last_plate_letter',
-                // 'que_number',
-                // 'call_status',
-                // 'is_called',
-                // 'dates',
+                'vehicle_number' => 'required|string',
+                'services_id' => 'required|exists:services,id',
+                'locket_id' => 'nullable|exists:lockets,id',
+                'level_id' => 'nullable|exists:levels,id',
             ]);
 
-            $ya = 1;
-            queues::create(
-                [
-                    'phone_number' => $request->input("phone_number"),
-                    'first_letter' => "kt",
-                    'plate_number' => "1234",
-                    'last_plate_letter' => "abc",
-                    'que_number' => $ya,
-                    // 'call_status'=>,
-                    'is_called' => false,
-                    'dates' => Carbon::today(),
-                    'services_id' => $request->services_id,
-                ]
+            // Ambil kode prefix dari layanan
+            $service = Services::findOrFail($request->services_id);
+            $prefix = $service->code ?? 'Q'; // default Q jika code kosong
 
-            );
+            // Ambil nomor terakhir untuk hari ini
+            $lastQueue = Queues::where('services_id', $request->services_id)
+                ->whereDate('dates', Carbon::today())
+                ->orderBy('id', 'desc')
+                ->first();
 
+            $lastNumber = 0;
+            if ($lastQueue) {
+                $lastNumber = intval(substr($lastQueue->queue_number, strlen($prefix)));
+            }
 
-            return response()->json(['success' => 'Data berhasil ditambahkan']);
+            $newNumber = str_pad($lastNumber + 1, 3, '0', STR_PAD_LEFT);
+            $queueNumber = $prefix . $newNumber;
+
+            // Simpan ke database
+            $queue = Queues::create([
+                'queue_number' => $queueNumber,
+                'vehicle_number' => $request->vehicle_number,
+                'status' => 'new',
+                'call_status' => null,
+                'is_called' => 0,
+                'dates' => Carbon::today(),
+                'services_id' => $request->services_id,
+                'locket_id' => $request->locket_id ?? null,
+                'level_id' => $request->level_id ?? null,
+            ]);
+
+            return response()->json([
+                'success' => 'Data berhasil ditambahkan dengan nomor antrian ' . $queueNumber
+            ]);
         } catch (\Exception $e) {
-            return response()->json(['success' => $e->getMessage()]);
-        };
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
