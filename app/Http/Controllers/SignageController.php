@@ -75,6 +75,7 @@ class SignageController extends Controller
         $video = $video->file_path;
         $video = explode('/', $video);
         $video = "http://legendary-spoon.test/video/" . $video[1];
+        // dd($video);
 
 
         return view('signage.signage', compact('que', 'video'));

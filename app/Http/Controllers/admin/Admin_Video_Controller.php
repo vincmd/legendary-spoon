@@ -11,6 +11,9 @@ class Admin_Video_Controller extends Controller
     public function video()
     {
         $video = video::first();
+        $video->file_path = explode('/', $video->file_path);
+        $video->file_path = "http://legendary-spoon.test/video/" . $video->file_path[1];
+        // dd($video->file_path);
 
         return view('admin.video.video', compact('video'));
     }
@@ -22,7 +25,7 @@ class Admin_Video_Controller extends Controller
             $path = $request->file('video')->store('sementara', 'public');
             $update = false;
 
-            if ($request->id !==null) {
+            if ($request->id !== null) {
                 $ids = $request->id;
                 $update = video::findOrFail($ids);
                 if ($update) {
