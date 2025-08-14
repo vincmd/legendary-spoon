@@ -18,7 +18,7 @@ class KioskController extends Controller
     public function kios(Request $request)
     {
         try {
-            // Validasi
+            // Validasi    
             $request->validate([
                 'vehicle_number' => 'required|string',
                 'services_id' => 'required|exists:services,id',
@@ -45,7 +45,7 @@ class KioskController extends Controller
             $queueNumber = $prefix . $newNumber;
 
             // Simpan ke database
-            $queue = Queues::create([
+            Queues::create([
                 'queue_number' => $queueNumber,
                 'vehicle_number' => $request->vehicle_number,
                 'status' => 'new',

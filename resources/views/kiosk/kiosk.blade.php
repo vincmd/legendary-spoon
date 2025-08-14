@@ -27,7 +27,8 @@
     class="bg-purple-500 hover:bg-purple-300 text-white px-4 py-2 rounded-lg shadow-md transition duration-200">
     {{ $item->services_name }}
     </button>
-    @endforeach
+    @endforeach</div>
+    </div>
 
     <!-- Popup -->
     <div id="popup-overlay" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
@@ -49,17 +50,17 @@
     <button onclick="submitForm()"
     class="flex-1 bg-green-500 hover:bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg transition duration-200">
     Kirim
-  </button>
-</div>
+        </button>
+    </div>
 
         </button>
         </div>
     </div>
 
-<script>
-function openPopup(id, label) {
-    let pesan, placeholderText;
-    let normalizedLabel = label.trim().toLowerCase();
+    <script>
+        function openPopup(id, label) {
+            let pesan, placeholderText;
+            let normalizedLabel = label.trim().toLowerCase();
 
     if (normalizedLabel === "ganti plat") {
         pesan = "Tolong Masukkan Nomor Plat Anda";
@@ -83,14 +84,14 @@ function openPopup(id, label) {
     document.getElementById("popup-overlay").classList.add("flex");
 
     document.getElementById("vehicle_number").focus();
-}
+    }
 
     function closePopup() {
         document.getElementById("popup-overlay").classList.add("hidden");
         document.getElementById("popup-overlay").classList.remove("flex");
     }
 
-function submitForm() {
+    function submitForm() {
     let services_id = document.getElementById("services_id").value;
     let vehicle_number = document.getElementById("vehicle_number").value;
 
@@ -121,7 +122,7 @@ function submitForm() {
         console.error(err);
         alert("Gagal mengirim data");
     });
-}
+    }
 
     // Tutup popup kalau klik luar
     document.getElementById("popup-overlay").addEventListener("click", function(e) {
@@ -131,4 +132,4 @@ function submitForm() {
     });
     </script>
 
-</style>
+</body>
