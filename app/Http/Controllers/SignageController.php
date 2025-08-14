@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Queues;
+use App\Models\RunningText;
 use App\Models\video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -28,8 +29,9 @@ class SignageController extends Controller
 
         // Step 2: loop through current queue items
         foreach ($que as $a) {
-            $quenum = "a" . $a->que_number;
-            $timeStr = $a->updated_at->format('Y-m-d H:i:s'); // ensure string comparison
+            $quenum =  $a->que_number;
+            $timeStr = $a->updated_at->format('Y-m-d H:i:s');
+            // ensure string comparison
 
             // Check if this data already exists in session
             $index = array_search($quenum, array_column($ex_que, 'data'));
@@ -67,7 +69,7 @@ class SignageController extends Controller
 
         // Step 3: save back to session
         session(['que_data' => $ex_que]);
-        $que=$ex_que;
+        $que = $ex_que;
 
 
 
@@ -77,7 +79,10 @@ class SignageController extends Controller
         $video = "http://legendary-spoon.test/video/" . $video[1];
         // dd($video);
 
+        $text = RunningText::first();
+        $text = $text->texts;
 
-        return view('signage.signage', compact('que', 'video'));
+
+        return view('signage.signage', compact('que', 'video', 'text'));
     }
 }

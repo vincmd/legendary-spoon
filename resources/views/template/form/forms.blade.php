@@ -2,7 +2,6 @@
 @section('main')
     @php
 
-
     @endphp
 
 

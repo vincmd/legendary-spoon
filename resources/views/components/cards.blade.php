@@ -35,17 +35,20 @@
             @if ($item['status'])
                 @php
                     $que_code = $item['data'];
-                    // $code_leght=Str::length($que_code);
                     $char_code = str_split($que_code);
+                    $audio_data = [];
 
-                    $library = [
+                    // Static intro words
+                    $library_awal = [
                         'start' => asset('aset/audio/start.mp3'),
                         'nomor' => asset('aset/audio/nomor.mp3'),
                         'antrian' => asset('aset/audio/antrian.mp3'),
-                        'silahkan'=>asset('aset/audio/silahkan.mp3'),
-                        'menuju'=>asset('aset/audio/menuju.mp3'),
-                        'loket'=>asset('aset/audio/loket.mp3'),
+                        'silahkan' => asset('aset/audio/silahkan.mp3'),
+                        'menuju' => asset('aset/audio/menuju.mp3'),
+                        'loket' => asset('aset/audio/loket.mp3'),
                     ];
+
+                    $library = $library_awal;
 
                     // Letters A–Z
                     foreach (range('A', 'Z') as $letter) {
@@ -57,10 +60,35 @@
                         $library[(string) $num] = asset("aset/audio/angka/{$num}.mp3");
                     }
 
-                    dd($library);
+                    // Build sequence from que_code
+                    foreach ($char_code as $char) {
+                        $char = strtolower($char);
+                        if (isset($library[$char])) {
+                            $audio_data[] = $library[$char];
+                        }
+                    }
 
+                    // Merge intro + code
+                    $full_audio_sequence = array_merge(array_values($library_awal), $audio_data);
                 @endphp
-                <script></script>
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        let files = @json($full_audio_sequence);
+                        let index = 0;
+
+                        function playNext() {
+                            if (index < files.length) {
+                                let audio = new Audio(files[index]);
+                                index++;
+                                audio.addEventListener("ended", playNext);
+                                audio.play();
+                            }
+                        }
+
+                        playNext();
+                    });
+                </script>
             @endif
             {{-- ============================================================== --}}
         </div>
