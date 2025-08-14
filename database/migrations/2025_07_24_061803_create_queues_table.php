@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('queues', function (Blueprint $table) {
             $table->id();
             $table->string('vehicle_number');
-            $table->bigInteger('queues_number');
+            $table->string('queues_number');
             $table->string('call_status')->nullable();
             $table->enum('status', ['new', 'proggres', 'stage', 'end', "cancelled"]);
             $table->date('dates')->default(now());

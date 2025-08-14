@@ -45,8 +45,8 @@ class KioskController extends Controller
             $queueNumber = $prefix . $newNumber;
 
             // Simpan ke database
-            $queue = Queues::create([
-                'queues_number' => $queueNumber,
+            Queues::create([
+                'queue_number' => $queueNumber,
                 'vehicle_number' => $request->vehicle_number,
                 'status' => 'new',
                 'call_status' => null,

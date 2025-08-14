@@ -78,10 +78,6 @@ Route::Post('/upload-temp-logo', [Admin_Services_controller::class, 'temp_logo']
 //|   admin acces / account                    |
 // ---------------------------------------------
 // Tampilkan daftar akun (bisa dengan pencarian)
-// -------------account---------------------------
-
-
-// Tampilkan daftar akun (bisa dengan pencarian)
 Route::get('/admin/account', [Admin_Account_Controller::class, 'account'])->middleware(['auth', 'verified'])->name('account.list');
 // Tampilkan form tambah akun
 Route::get('/admin/account/new', function () {
