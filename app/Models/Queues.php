@@ -10,7 +10,7 @@ class Queues extends Model
 
     protected $fillable = [
         'vehicle_number',
-        'queue_number',
+        'queues_number',
         'call_status',
         'is_called',
         'dates',

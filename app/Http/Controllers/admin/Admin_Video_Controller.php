@@ -11,10 +11,11 @@ class Admin_Video_Controller extends Controller
     public function video()
     {
         $video = video::first();
-        $video->file_path = explode('/', $video->file_path);
-        $video->file_path = "http://legendary-spoon.test/video/" . $video->file_path[1];
-        // dd($video->file_path);
-
+        if ($video) {
+            $video->file_path = explode('/', $video->file_path);
+            $video->file_path = "http://legendary-spoon.test/video/" . $video->file_path[1];
+            // dd($video->file_path);
+        };
         return view('admin.video.video', compact('video'));
     }
 
