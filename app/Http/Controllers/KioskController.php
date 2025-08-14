@@ -38,7 +38,7 @@ class KioskController extends Controller
 
             $lastNumber = 0;
             if ($lastQueue) {
-                $lastNumber = intval(substr($lastQueue->queue_number, strlen($prefix)));
+                $lastNumber = intval(substr($lastQueue->queues_number, strlen($prefix)));
             }
 
             $newNumber = str_pad($lastNumber+1, 3, '0', STR_PAD_LEFT);
@@ -46,7 +46,7 @@ class KioskController extends Controller
 
             // Simpan ke database
             Queues::create([
-                'queue_number' => $queueNumber,
+                'queues_number' => $queueNumber,
                 'vehicle_number' => $request->vehicle_number,
                 'status' => 'new',
                 'call_status' => null,
