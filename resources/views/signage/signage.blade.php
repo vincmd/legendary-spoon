@@ -1,5 +1,5 @@
 @php
-    session('open_tab', 'running text');
+    // dd(session('que_data'));
 @endphp
 {{-- @include('template.body') --}}
 @extends('template.second-body')
@@ -24,9 +24,11 @@
 
                         </video>
                     </div>
-                    <div id="marquee"
-                        style="white-space: nowrap;overflow: hidden;width: 100%;height:8%; " class="bg-gray-300">
-                        <span id="marquee-text" style=" text-transform: capitalize ;display: inline-block;will-change: transform; font-weight: bolder;" class="text-2xl dark:text-white text-gray-600 ">
+                    <div id="marquee" style="white-space: nowrap;overflow: hidden;width: 100%;height:8%; "
+                        class="bg-gray-300">
+                        <span id="marquee-text"
+                            style=" text-transform: capitalize ;display: inline-block;will-change: transform; font-weight: bolder;"
+                            class="text-2xl dark:text-white text-gray-600 ">
                             {{ $text }}
                         </span>
                     </div>
@@ -97,14 +99,10 @@
 
                 scrollText();
             </script>
-            {{-- page refresh --}}
-            <script>
-                setInterval(() => {
-                    // location.reload();
-                    // console.log( video.currentTime);
 
-                }, 8000);
-            </script>
+           
+
+
 
     </main>
 @endsection
